@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\tests\Marketing\Models;
+namespace Modules\Marketing\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
 use Modules\Marketing\Models\Promotion;
