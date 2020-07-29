@@ -22,9 +22,9 @@ echo $this->getData('nav')->render(); ?>
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="box wf-100">
+        <div class="portlet">
+            <div class="portlet-head"><?= $this->getHtml('Events'); ?><i class="fa fa-download floatRight download btn"></i></div>
             <table class="default">
-                <caption><?= $this->getHtml('Events'); ?><i class="fa fa-download floatRight download btn"></i></caption>
                 <thead>
                 <tr>
                     <td><?= $this->getHtml('Status') ?>
@@ -36,9 +36,6 @@ echo $this->getData('nav')->render(); ?>
                     <td><?= $this->getHtml('Expenses') ?>
                     <td><?= $this->getHtml('Sales') ?>
                     <td><?= $this->getHtml('Budget') ?>
-                <tfoot>
-                <tr>
-                    <td colspan="9">
                 <tbody>
                 <?php $count = 0; foreach ([] as $key => $value) : ++$count; ?>
                 <?php endforeach; ?>
