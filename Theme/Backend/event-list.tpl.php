@@ -27,15 +27,15 @@ echo $this->getData('nav')->render(); ?>
             <table class="default">
                 <thead>
                 <tr>
-                    <td><?= $this->getHtml('Status') ?>
-                    <td><?= $this->getHtml('Type') ?>
-                    <td class="wf-100"><?= $this->getHtml('Title') ?>
-                    <td><?= $this->getHtml('Start') ?>
-                    <td><?= $this->getHtml('End') ?>
-                    <td><?= $this->getHtml('Location') ?>
-                    <td><?= $this->getHtml('Expenses') ?>
-                    <td><?= $this->getHtml('Sales') ?>
-                    <td><?= $this->getHtml('Budget') ?>
+                    <td><?= $this->getHtml('Status'); ?>
+                    <td><?= $this->getHtml('Type'); ?>
+                    <td class="wf-100"><?= $this->getHtml('Title'); ?>
+                    <td><?= $this->getHtml('Start'); ?>
+                    <td><?= $this->getHtml('End'); ?>
+                    <td><?= $this->getHtml('Location'); ?>
+                    <td><?= $this->getHtml('Expenses'); ?>
+                    <td><?= $this->getHtml('Sales'); ?>
+                    <td><?= $this->getHtml('Budget'); ?>
                 <tbody>
                 <?php $count = 0; foreach ([] as $key => $value) : ++$count; ?>
                 <?php endforeach; ?>

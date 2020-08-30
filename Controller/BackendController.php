@@ -34,7 +34,6 @@ use phpOMS\Views\View;
  *  While costs are universal the goal for promotions, events etc. is not.
  *  In some cases it could be sales in others it could be response rate etc.
  *  Implement a way to define goals and allow manual+system side evaluation.
- *
  */
 final class BackendController extends Controller
 {

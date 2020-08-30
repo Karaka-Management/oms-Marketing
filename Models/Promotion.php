@@ -49,6 +49,7 @@ class Promotion
      * @since 1.0.0
      */
     private string $name = '';
+
     /**
      * Description.
      *
