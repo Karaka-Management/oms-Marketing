@@ -13,7 +13,7 @@
 declare(strict_types=1);
 
 $promotion = $this->getData('promotion');
-$tasks = $promotion->getTasks();
+$tasks     = $promotion->getTasks();
 
 echo $this->getData('nav')->render(); ?>
 

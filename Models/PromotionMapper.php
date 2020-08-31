@@ -60,16 +60,16 @@ final class PromotionMapper extends DataMapperAbstract
      */
     protected static array $hasMany = [
         'tasks' => [
-            'mapper' => TaskMapper::class,
-            'table'  => 'marketing_promotion_task_relation',
+            'mapper'   => TaskMapper::class,
+            'table'    => 'marketing_promotion_task_relation',
             'external' => 'marketing_promotion_task_relation_dst',
-            'self'   => 'marketing_promotion_task_relation_src',
+            'self'     => 'marketing_promotion_task_relation_src',
         ],
         'media' => [
-            'mapper' => MediaMapper::class,
-            'table'  => 'marketing_promotion_media',
+            'mapper'   => MediaMapper::class,
+            'table'    => 'marketing_promotion_media',
             'external' => 'marketing_promotion_media_src',
-            'self'   => 'marketing_promotion_media_dst',
+            'self'     => 'marketing_promotion_media_dst',
         ],
     ];
 
