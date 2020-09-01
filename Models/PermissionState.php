@@ -28,5 +28,5 @@ abstract class PermissionState extends Enum
 {
     public const PROMOTION = 1;
 
-    public const EVENT     = 2;
+    public const EVENT = 2;
 }
