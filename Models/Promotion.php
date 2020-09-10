@@ -78,7 +78,7 @@ class Promotion
      * @var \DateTime
      * @since 1.0.0
      */
-    private \DateTime $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     /**
      * Created by.
@@ -102,7 +102,7 @@ class Promotion
         $this->start = new \DateTime('now');
         $this->end   = new \DateTime('now');
         $this->end->modify('+1 month');
-        $this->createdAt = new \DateTime('now');
+        $this->createdAt = new \DateTimeImmutable('now');
         $this->createdBy = new NullAccount();
 
         $this->calendar = new Calendar();
@@ -482,7 +482,7 @@ class Promotion
      *
      * @since 1.0.0
      */
-    public function getCreatedAt() : \DateTime
+    public function getCreatedAt() : \DateTimeInterface
     {
         return $this->createdAt;
     }

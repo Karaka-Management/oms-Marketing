@@ -49,7 +49,7 @@ final class PromotionMapper extends DataMapperAbstract
         'marketing_promotion_progress'      => ['name' => 'marketing_promotion_progress',      'type' => 'int',          'internal' => 'progress'],
         'marketing_promotion_progress_type' => ['name' => 'marketing_promotion_progress_type', 'type' => 'int',          'internal' => 'progressType'],
         'marketing_promotion_created_by'    => ['name' => 'marketing_promotion_created_by',    'type' => 'int',          'internal' => 'createdBy', 'readonly' => true],
-        'marketing_promotion_created_at'    => ['name' => 'marketing_promotion_created_at',    'type' => 'DateTime',     'internal' => 'createdAt', 'readonly' => true],
+        'marketing_promotion_created_at'    => ['name' => 'marketing_promotion_created_at',    'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
     ];
 
     /**
