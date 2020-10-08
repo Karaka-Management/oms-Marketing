@@ -27,6 +27,10 @@ use phpOMS\Utils\RnG\Text;
  */
 class PromotionMapperTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @covers Modules\Marketing\Models\PromotionMapper
+     * @group module
+     */
     public function testCRUD() : void
     {
         $promotion = new Promotion();
@@ -86,6 +90,10 @@ class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(\end($expected)->getName(), \end($actual)->getName());
     }
 
+    /**
+     * @covers Modules\Marketing\Models\PromotionMapper
+     * @group module
+     */
     public function testNewest() : void
     {
         $newest = PromotionMapper::getNewest(1);

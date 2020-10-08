@@ -24,6 +24,10 @@ use phpOMS\Localization\Money;
  */
 class PromotionTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @covers Modules\Marketing\Models\Promotion
+     * @group module
+     */
     public function testDefault() : void
     {
         $promotion = new Promotion();
@@ -44,6 +48,10 @@ class PromotionTest extends \PHPUnit\Framework\TestCase
         self::assertInstanceOf('\Modules\Tasks\Models\Task', $promotion->getTask(0));
     }
 
+    /**
+     * @covers Modules\Marketing\Models\Promotion
+     * @group module
+     */
     public function testSetGet() : void
     {
         $promotion = new Promotion();
