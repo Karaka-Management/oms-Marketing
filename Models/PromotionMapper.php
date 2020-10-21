@@ -81,7 +81,7 @@ final class PromotionMapper extends DataMapperAbstract
      */
     protected static array $ownsOne = [
         'calendar' => [
-            'mapper' => CalendarMapper::class,
+            'mapper'     => CalendarMapper::class,
             'external'   => 'marketing_promotion_calendar',
         ],
     ];
@@ -94,7 +94,7 @@ final class PromotionMapper extends DataMapperAbstract
      */
     protected static array $belongsTo = [
         'createdBy' => [
-            'mapper' => AccountMapper::class,
+            'mapper'     => AccountMapper::class,
             'external'   => 'marketing_promotion_created_by',
         ],
     ];
