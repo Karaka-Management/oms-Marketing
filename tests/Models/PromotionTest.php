@@ -34,12 +34,12 @@ class PromotionTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(0, $promotion->getId());
         self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $promotion->getCalendar());
-        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $promotion->getCreatedAt()->format('Y-m-d'));
+        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $promotion->createdAt->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $promotion->getStart()->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $promotion->getEnd()->format('Y-m-d'));
-        self::assertEquals(0, $promotion->getCreatedBy()->getId());
+        self::assertEquals(0, $promotion->createdBy->getId());
         self::assertEquals('', $promotion->getName());
-        self::assertEquals('', $promotion->getDescription());
+        self::assertEquals('', $promotion->description);
         self::assertEquals(0, $promotion->getCosts()->getInt());
         self::assertEquals(0, $promotion->getBudget()->getInt());
         self::assertEquals(0, $promotion->getEarnings()->getInt());
@@ -59,8 +59,8 @@ class PromotionTest extends \PHPUnit\Framework\TestCase
         $promotion->setName('Promotion');
         self::assertEquals('Promotion', $promotion->getName());
 
-        $promotion->setDescription('Description');
-        self::assertEquals('Description', $promotion->getDescription());
+        $promotion->description = 'Description';
+        self::assertEquals('Description', $promotion->description);
 
         $promotion->setStart($date = new \DateTime('2000-05-05'));
         self::assertEquals($date->format('Y-m-d'), $promotion->getStart()->format('Y-m-d'));
@@ -81,12 +81,12 @@ class PromotionTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($money->getAmount(), $promotion->getEarnings()->getAmount());
 
         $task = new Task();
-        $task->setTitle('Promo Task A');
+        $task->title = 'Promo Task A';
         $task->setCreatedBy(new NullAccount(1));
 
         $promotion->addTask($task);
 
-        self::assertEquals('Promo Task A', $promotion->getTask(0)->getTitle());
+        self::assertEquals('Promo Task A', $promotion->getTask(0)->title);
         self::assertCount(1, $promotion->getTasks());
         self::assertTrue($promotion->removeTask(0));
         self::assertEquals(0, $promotion->countTasks());

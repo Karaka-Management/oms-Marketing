@@ -56,7 +56,7 @@ class Promotion
      * @var string
      * @since 1.0.0
      */
-    private string $description = '';
+    public string $description = '';
 
     private $calendar = null;
 
@@ -78,7 +78,7 @@ class Promotion
      * @var \DateTimeImmutable
      * @since 1.0.0
      */
-    private \DateTimeImmutable $createdAt;
+    public \DateTimeImmutable $createdAt;
 
     /**
      * Created by.
@@ -86,7 +86,7 @@ class Promotion
      * @var Account
      * @since 1.0.0
      */
-    private Account $createdBy;
+    public Account $createdBy;
 
     private $tasks = [];
 
@@ -368,33 +368,7 @@ class Promotion
     public function setName(string $name) : void
     {
         $this->name = $name;
-        $this->calendar->setName($name);
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getDescription() : string
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description Description
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setDescription(string $description) : void
-    {
-        $this->description = $description;
+        $this->calendar->name = $name;
     }
 
     /**
@@ -473,41 +447,5 @@ class Promotion
     public function setEarnings(Money $earnings) : void
     {
         $this->earnings = $earnings;
-    }
-
-    /**
-     * Get created at
-     *
-     * @return \DateTimeImmutable
-     *
-     * @since 1.0.0
-     */
-    public function getCreatedAt() : \DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Get created by
-     *
-     * @return Account
-     *
-     * @since 1.0.0
-     */
-    public function getCreatedBy() : Account
-    {
-        return $this->createdBy;
-    }
-
-    /**
-     * Set creator
-     *
-     * @param Account $createdBy Creator
-     *
-     * @since 1.0.0
-     */
-    public function setCreatedBy(Account $createdBy) : void
-    {
-        $this->createdBy = $createdBy;
     }
 }

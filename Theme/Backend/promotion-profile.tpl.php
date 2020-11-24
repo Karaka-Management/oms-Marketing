@@ -32,7 +32,7 @@ echo $this->getData('nav')->render(); ?>
                         <tr><td><input type="datetime-local" id="iStart" name="start" value="<?= $this->printHtml($promotion->getStart()->format('Y-m-d\TH:i:s')); ?>">
                             <td><input type="datetime-local" id="iEnd" name="end" value="<?= $this->printHtml($promotion->getEnd()->format('Y-m-d\TH:i:s')); ?>">
                         <tr><td colspan="2"><label for="iDescription"><?= $this->getHtml('Description'); ?></label>
-                        <tr><td colspan="2"><textarea id="iDescription" name="desc"><?= $this->printHtml($promotion->getDescription()); ?></textarea>
+                        <tr><td colspan="2"><textarea id="iDescription" name="desc"><?= $this->printHtml($promotion->description); ?></textarea>
                         <tr><td><label for="iBudget"><?= $this->getHtml('Budget'); ?></label><td><label for="iActual"><?= $this->getHtml('Actual'); ?></label>
                         <tr><td><input type="text" id="iBudget" name="budget" placeholder=""><td><input type="text" id="iActual" name="actual">
                         <tr><td colspan="2"><input type="submit" value="<?= $this->getHtml('Save', '0', '0'); ?>">

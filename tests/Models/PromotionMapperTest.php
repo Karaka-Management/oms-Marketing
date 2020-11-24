@@ -36,8 +36,8 @@ class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $promotion = new Promotion();
 
         $promotion->setName('Promotionname');
-        $promotion->setDescription('Description');
-        $promotion->setCreatedBy(new NullAccount(1));
+        $promotion->description = 'Description';
+        $promotion->createdBy = new NullAccount(1);
         $promotion->setStart(new \DateTime('2000-05-05'));
         $promotion->setEnd(new \DateTime('2005-05-05'));
 
@@ -49,23 +49,23 @@ class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $promotion->setEarnings($money);
 
         $task = new Task();
-        $task->setTitle('PromotionTask 1');
+        $task->title = 'PromotionTask 1';
         $task->setCreatedBy(new NullAccount(1));
 
         $task2 = new Task();
-        $task2->setTitle('PromotionTask 2');
+        $task2->title = 'PromotionTask 2';
         $task2->setCreatedBy(new NullAccount(1));
 
         $promotion->addTask($task);
         $promotion->addTask($task2);
 
         $media = new Media();
-        $media->setCreatedBy(new NullAccount(1));
-        $media->setDescription('desc');
+        $media->createdBy = new NullAccount(1);
+        $media->description = 'desc';
         $media->setPath('some/path');
-        $media->setSize(11);
-        $media->setExtension('png');
-        $media->setName('Promotion Media');
+        $media->size = 11;
+        $media->extension = 'png';
+        $media->name = 'Promotion Media';
         $promotion->addMedia($media);
 
         $id = PromotionMapper::create($promotion);
@@ -75,19 +75,19 @@ class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $promotionR = PromotionMapper::get($promotion->getId());
 
         self::assertEquals($promotion->getName(), $promotionR->getName());
-        self::assertEquals($promotion->getDescription(), $promotionR->getDescription());
+        self::assertEquals($promotion->description, $promotionR->description);
         self::assertEquals($promotion->countTasks(), $promotionR->countTasks());
         self::assertEquals($promotion->getCosts()->getAmount(), $promotionR->getCosts()->getAmount());
         self::assertEquals($promotion->getBudget()->getAmount(), $promotionR->getBudget()->getAmount());
         self::assertEquals($promotion->getEarnings()->getAmount(), $promotionR->getEarnings()->getAmount());
-        self::assertEquals($promotion->getCreatedAt()->format('Y-m-d'), $promotionR->getCreatedAt()->format('Y-m-d'));
+        self::assertEquals($promotion->createdAt->format('Y-m-d'), $promotionR->createdAt->format('Y-m-d'));
         self::assertEquals($promotion->getStart()->format('Y-m-d'), $promotionR->getStart()->format('Y-m-d'));
         self::assertEquals($promotion->getEnd()->format('Y-m-d'), $promotionR->getEnd()->format('Y-m-d'));
 
         $expected = $promotion->getMedia();
         $actual   = $promotionR->getMedia();
 
-        self::assertEquals(\end($expected)->getName(), \end($actual)->getName());
+        self::assertEquals(\end($expected)->name, \end($actual)->name);
     }
 
     /**
@@ -114,8 +114,8 @@ class PromotionMapperTest extends \PHPUnit\Framework\TestCase
             $promotion = new Promotion();
 
             $promotion->setName($text->generateText(\mt_rand(3, 7)));
-            $promotion->setDescription($text->generateText(\mt_rand(20, 100)));
-            $promotion->setCreatedBy(new NullAccount(1));
+            $promotion->description = $text->generateText(\mt_rand(20, 100));
+            $promotion->createdBy = new NullAccount(1);
             $promotion->setStart(new \DateTime('2000-05-05'));
             $promotion->setEnd(new \DateTime('2005-05-05'));
 
