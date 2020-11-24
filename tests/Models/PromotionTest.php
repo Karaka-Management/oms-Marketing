@@ -80,7 +80,7 @@ class PromotionTest extends \PHPUnit\Framework\TestCase
         $promotion->setEarnings($money);
         self::assertEquals($money->getAmount(), $promotion->getEarnings()->getAmount());
 
-        $task = new Task();
+        $task        = new Task();
         $task->title = 'Promo Task A';
         $task->setCreatedBy(new NullAccount(1));
 

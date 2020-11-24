@@ -37,7 +37,7 @@ class PromotionMapperTest extends \PHPUnit\Framework\TestCase
 
         $promotion->setName('Promotionname');
         $promotion->description = 'Description';
-        $promotion->createdBy = new NullAccount(1);
+        $promotion->createdBy   = new NullAccount(1);
         $promotion->setStart(new \DateTime('2000-05-05'));
         $promotion->setEnd(new \DateTime('2005-05-05'));
 
@@ -48,24 +48,24 @@ class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $promotion->setBudget($money);
         $promotion->setEarnings($money);
 
-        $task = new Task();
+        $task        = new Task();
         $task->title = 'PromotionTask 1';
         $task->setCreatedBy(new NullAccount(1));
 
-        $task2 = new Task();
+        $task2        = new Task();
         $task2->title = 'PromotionTask 2';
         $task2->setCreatedBy(new NullAccount(1));
 
         $promotion->addTask($task);
         $promotion->addTask($task2);
 
-        $media = new Media();
-        $media->createdBy = new NullAccount(1);
+        $media              = new Media();
+        $media->createdBy   = new NullAccount(1);
         $media->description = 'desc';
         $media->setPath('some/path');
-        $media->size = 11;
+        $media->size      = 11;
         $media->extension = 'png';
-        $media->name = 'Promotion Media';
+        $media->name      = 'Promotion Media';
         $promotion->addMedia($media);
 
         $id = PromotionMapper::create($promotion);
@@ -115,7 +115,7 @@ class PromotionMapperTest extends \PHPUnit\Framework\TestCase
 
             $promotion->setName($text->generateText(\mt_rand(3, 7)));
             $promotion->description = $text->generateText(\mt_rand(20, 100));
-            $promotion->createdBy = new NullAccount(1);
+            $promotion->createdBy   = new NullAccount(1);
             $promotion->setStart(new \DateTime('2000-05-05'));
             $promotion->setEnd(new \DateTime('2005-05-05'));
 
