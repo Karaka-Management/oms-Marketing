@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Modules\Marketing\Controller;
 
 use phpOMS\Module\ModuleAbstract;
-use phpOMS\Module\WebInterface;
 
 /**
  * Marketing controller class.
