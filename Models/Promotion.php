@@ -38,9 +38,9 @@ class Promotion
      */
     protected int $id = 0;
 
-    private $start = null;
+    private \DateTime $start;
 
-    private $end = null;
+    private \DateTime $end;
 
     /**
      * Name.
@@ -58,19 +58,19 @@ class Promotion
      */
     public string $description = '';
 
-    private $calendar = null;
+    private Calendar $calendar;
 
-    private $costs = null;
+    private Money $costs;
 
-    private $budget = null;
+    private Money $budget;
 
-    private $earnings = null;
+    private Money $earnings;
 
-    private $media = [];
+    private array $media = [];
 
-    private $progress = 0;
+    private int $progress = 0;
 
-    private $progressType = ProgressType::MANUAL;
+    private int $progressType = ProgressType::MANUAL;
 
     /**
      * Created at.
@@ -88,7 +88,7 @@ class Promotion
      */
     public Account $createdBy;
 
-    private $tasks = [];
+    private array $tasks = [];
 
     /**
      * Cosntructor
