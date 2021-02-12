@@ -15,6 +15,7 @@ return ['Marketing' => [
     'Actual'      => '',
     'Budget'      => '',
     'Description' => '',
+    'Due'         => '',
     'End'         => '',
     'Event'       => '',
     'Events'      => '',
@@ -29,5 +30,4 @@ return ['Marketing' => [
     'Status'      => '',
     'Title'       => '',
     'Type'        => '',
-    'Due'         => '',
 ]];
