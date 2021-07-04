@@ -17,7 +17,7 @@ namespace Modules\Marketing\Models;
 use phpOMS\Stdlib\Base\Enum;
 
 /**
- * Task type enum.
+ * Progress type enum.
  *
  * @package Modules\Marketing\Models
  * @license OMS License 1.0
