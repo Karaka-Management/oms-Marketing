@@ -38,8 +38,20 @@ class Promotion
      */
     protected int $id = 0;
 
+    /**
+     * Start of the promotion.
+     *
+     * @var \DateTime
+     * @since 1.0.0
+     */
     private \DateTime $start;
 
+    /**
+     * End of the promotion.
+     *
+     * @var \DateTime
+     * @since 1.0.0
+     */
     private \DateTime $end;
 
     /**
@@ -58,18 +70,60 @@ class Promotion
      */
     public string $description = '';
 
+    /**
+     * Calendar.
+     *
+     * @var Calendar
+     * @since 1.0.0
+     */
     private Calendar $calendar;
 
+    /**
+     * Costs.
+     *
+     * @var Money
+     * @since 1.0.0
+     */
     private Money $costs;
 
+    /**
+     * Budget.
+     *
+     * @var Money
+     * @since 1.0.0
+     */
     private Money $budget;
 
+    /**
+     * Earnings.
+     *
+     * @var Money
+     * @since 1.0.0
+     */
     private Money $earnings;
 
+    /**
+     * Media.
+     *
+     * @var Media[]
+     * @since 1.0.0
+     */
     private array $media = [];
 
+    /**
+     * Progress (0-100).
+     *
+     * @var int
+     * @since 1.0.0
+     */
     private int $progress = 0;
 
+    /**
+     * Progress type.
+     *
+     * @var int
+     * @since 1.0.0
+     */
     private int $progressType = ProgressType::MANUAL;
 
     /**
@@ -88,6 +142,12 @@ class Promotion
      */
     public Account $createdBy;
 
+    /**
+     * Tasks.
+     *
+     * @var Task[]
+     * @since 1.0.0
+     */
     private array $tasks = [];
 
     /**
