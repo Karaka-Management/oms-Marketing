@@ -23,6 +23,7 @@ echo $this->getData('nav')->render(); ?>
     <div class="col-xs-12">
         <div class="portlet">
             <div class="portlet-head"><?= $this->getHtml('Events'); ?><i class="fa fa-download floatRight download btn"></i></div>
+            <div class="slider">
             <table class="default sticky">
                 <thead>
                 <tr>
@@ -42,6 +43,7 @@ echo $this->getData('nav')->render(); ?>
                 <tr><td colspan="9" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
                         <?php endif; ?>
             </table>
+            </div>
         </div>
     </div>
 </div>
