@@ -19,7 +19,7 @@ namespace Modules\Marketing\tests\Admin;
  */
 class AdminTest extends \PHPUnit\Framework\TestCase
 {
-    protected const MODULE_NAME = 'Marketing';
+    protected const NAME = 'Marketing';
 
     protected const URI_LOAD = '';
 
