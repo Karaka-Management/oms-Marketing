@@ -22,7 +22,7 @@ use phpOMS\Localization\Money;
 /**
  * @internal
  */
-class PromotionTest extends \PHPUnit\Framework\TestCase
+final class PromotionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Modules\Marketing\Models\Promotion

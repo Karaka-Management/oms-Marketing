@@ -25,7 +25,7 @@ use phpOMS\Utils\RnG\Text;
 /**
  * @internal
  */
-class PromotionMapperTest extends \PHPUnit\Framework\TestCase
+final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Modules\Marketing\Models\PromotionMapper
