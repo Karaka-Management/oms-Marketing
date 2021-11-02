@@ -14,8 +14,9 @@ declare(strict_types=1);
 
 namespace Modules\Marketing\tests\Models;
 
-use Modules\Admin\Models\NullAccount;
 use Modules\Marketing\Models\Promotion;
+use Modules\Marketing\Models\ProgressType;
+use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
 
@@ -24,71 +25,158 @@ use phpOMS\Localization\Money;
  */
 final class PromotionTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers Modules\Marketing\Models\Promotion
-     * @group module
-     */
-    public function testDefault() : void
-    {
-        $promotion = new Promotion();
+    private Promotion $promotion;
 
-        self::assertEquals(0, $promotion->getId());
-        self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $promotion->getCalendar());
-        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $promotion->createdAt->format('Y-m-d'));
-        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $promotion->getStart()->format('Y-m-d'));
-        self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $promotion->getEnd()->format('Y-m-d'));
-        self::assertEquals(0, $promotion->createdBy->getId());
-        self::assertEquals('', $promotion->getName());
-        self::assertEquals('', $promotion->description);
-        self::assertEquals(0, $promotion->getCosts()->getInt());
-        self::assertEquals(0, $promotion->getBudget()->getInt());
-        self::assertEquals(0, $promotion->getEarnings()->getInt());
-        self::assertEmpty($promotion->getTasks());
-        self::assertFalse($promotion->removeTask(2));
-        self::assertInstanceOf('\Modules\Tasks\Models\Task', $promotion->getTask(0));
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp() : void
+    {
+        $this->promotion = new Promotion();
     }
 
     /**
      * @covers Modules\Marketing\Models\Promotion
      * @group module
      */
-    public function testSetGet() : void
+    public function testDefault() : void
     {
-        $promotion = new Promotion();
+        self::assertEquals(0, $this->promotion->getId());
+        self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $this->promotion->calendar);
+        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->promotion->start->format('Y-m-d'));
+        self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $this->promotion->end->format('Y-m-d'));
+        self::assertEquals(0, $this->promotion->costs->getInt());
+        self::assertEquals(0, $this->promotion->budget->getInt());
+        self::assertEquals(0, $this->promotion->earnings->getInt());
+        self::assertFalse($this->promotion->removeTask(2));
+        self::assertEmpty($this->promotion->getTasks());
+        self::assertEmpty($this->promotion->getMedia());
+        self::assertInstanceOf('\Modules\Tasks\Models\NullTask', $this->promotion->getTask(1));
+        self::assertEquals(0, $this->promotion->progress);
+        self::assertEquals(ProgressType::MANUAL, $this->promotion->getProgressType());
+    }
 
-        $promotion->setName('Promotion');
-        self::assertEquals('Promotion', $promotion->getName());
-
-        $promotion->description = 'Description';
-        self::assertEquals('Description', $promotion->description);
-
-        $promotion->setStart($date = new \DateTime('2000-05-05'));
-        self::assertEquals($date->format('Y-m-d'), $promotion->getStart()->format('Y-m-d'));
-
-        $promotion->setEnd($date = new \DateTime('2000-05-05'));
-        self::assertEquals($date->format('Y-m-d'), $promotion->getEnd()->format('Y-m-d'));
-
+    /**
+     * @covers Modules\Marketing\Models\Promotion
+     * @group module
+     */
+    public function testCostsInputOutput() : void
+    {
         $money = new Money();
         $money->setString('1.23');
 
-        $promotion->setCosts($money);
-        self::assertEquals($money->getAmount(), $promotion->getCosts()->getAmount());
+        $this->promotion->costs = $money;
+        self::assertEquals($money->getAmount(), $this->promotion->costs->getAmount());
+    }
 
-        $promotion->setBudget($money);
-        self::assertEquals($money->getAmount(), $promotion->getBudget()->getAmount());
+    /**
+     * @covers Modules\Marketing\Models\Promotion
+     * @group module
+     */
+    public function testBudgetInputOutput() : void
+    {
+        $money = new Money();
+        $money->setString('1.23');
 
-        $promotion->setEarnings($money);
-        self::assertEquals($money->getAmount(), $promotion->getEarnings()->getAmount());
+        $this->promotion->budget = $money;
+        self::assertEquals($money->getAmount(), $this->promotion->budget->getAmount());
+    }
 
+    /**
+     * @covers Modules\Marketing\Models\Promotion
+     * @group module
+     */
+    public function testEarningsInputOutput() : void
+    {
+        $money = new Money();
+        $money->setString('1.23');
+
+        $this->promotion->earnings = $money;
+        self::assertEquals($money->getAmount(), $this->promotion->earnings->getAmount());
+    }
+
+    /**
+     * @covers Modules\Marketing\Models\Promotion
+     * @group module
+     */
+    public function testMediaInputOutput() : void
+    {
+        $this->promotion->addMedia(new Media());
+        self::assertCount(1, $this->promotion->getMedia());
+    }
+
+    /**
+     * @covers Modules\Marketing\Models\Promotion
+     * @group module
+     */
+    public function testTaskInputOutput() : void
+    {
         $task        = new Task();
-        $task->title = 'Promo Task A';
-        $task->setCreatedBy(new NullAccount(1));
+        $task->title = 'A';
 
-        $promotion->addTask($task);
+        $this->promotion->addTask($task);
+        self::assertEquals('A', $this->promotion->getTask(0)->title);
 
-        self::assertEquals('Promo Task A', $promotion->getTask(0)->title);
-        self::assertCount(1, $promotion->getTasks());
-        self::assertTrue($promotion->removeTask(0));
-        self::assertEquals(0, $promotion->countTasks());
+        self::assertTrue($this->promotion->removeTask(0));
+        self::assertEquals(0, $this->promotion->countTasks());
+
+        $this->promotion->addTask($task);
+        self::assertCount(1, $this->promotion->getTasks());
+    }
+
+    /**
+     * @covers Modules\Marketing\Models\Promotion
+     * @group module
+     */
+    public function testProgressInputOutput() : void
+    {
+        $this->promotion->progress = 10;
+        self::assertEquals(10, $this->promotion->progress);
+    }
+
+    /**
+     * @covers Modules\Marketing\Models\Promotion
+     * @group module
+     */
+    public function testProgressTypeInputOutput() : void
+    {
+        $this->promotion->setProgressType(ProgressType::TASKS);
+        self::assertEquals(ProgressType::TASKS, $this->promotion->getProgressType());
+    }
+
+    /**
+     * @covers Modules\Marketing\Models\Promotion
+     * @group module
+     */
+    public function testSerialize() : void
+    {
+        $this->promotion->name        = 'Name';
+        $this->promotion->description = 'Description';
+        $this->promotion->start       = new \DateTime();
+        $this->promotion->end         = new \DateTime();
+        $this->promotion->progress = 10;
+        $this->promotion->setProgressType(ProgressType::TASKS);
+
+        $serialized = $this->promotion->jsonSerialize();
+        unset($serialized['calendar']);
+        unset($serialized['createdAt']);
+
+        self::assertEquals(
+            [
+                'id'           => 0,
+                'start'        => $this->promotion->start,
+                'end'          => $this->promotion->end,
+                'name'         => 'Name',
+                'description'  => 'Description',
+                'costs'        => new Money(),
+                'budget'       => new Money(),
+                'earnings'     => new Money(),
+                'tasks'        => [],
+                'media'        => [],
+                'progress'     => 10,
+                'progressType' => ProgressType::TASKS,
+            ],
+            $serialized
+        );
     }
 }

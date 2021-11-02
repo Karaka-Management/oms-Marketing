@@ -17,6 +17,7 @@ namespace Modules\Marketing\tests\Models;
 use Modules\Admin\Models\NullAccount;
 use Modules\Marketing\Models\Promotion;
 use Modules\Marketing\Models\PromotionMapper;
+use Modules\Marketing\Models\ProgressType;
 use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
@@ -35,29 +36,32 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
     {
         $promotion = new Promotion();
 
-        $promotion->setName('Promotionname');
+        $promotion->name = 'Promotionname';
         $promotion->description = 'Description';
         $promotion->createdBy   = new NullAccount(1);
-        $promotion->setStart(new \DateTime('2000-05-05'));
-        $promotion->setEnd(new \DateTime('2005-05-05'));
+        $promotion->start       = new \DateTime('2000-05-05');
+        $promotion->end         = new \DateTime('2005-05-05');
 
         $money = new Money();
         $money->setString('1.23');
 
-        $promotion->setCosts($money);
-        $promotion->setBudget($money);
-        $promotion->setEarnings($money);
+        $promotion->costs    = $money;
+        $promotion->budget   = $money;
+        $promotion->earnings = $money;
 
         $task        = new Task();
-        $task->title = 'PromotionTask 1';
+        $task->title = 'EventTask 1';
         $task->setCreatedBy(new NullAccount(1));
 
         $task2        = new Task();
-        $task2->title = 'PromotionTask 2';
+        $task2->title = 'EventTask 2';
         $task2->setCreatedBy(new NullAccount(1));
 
         $promotion->addTask($task);
         $promotion->addTask($task2);
+
+        $promotion->progress = 11;
+        $promotion->setProgressType(ProgressType::TASKS);
 
         $media              = new Media();
         $media->createdBy   = new NullAccount(1);
@@ -65,7 +69,7 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $media->setPath('some/path');
         $media->size      = 11;
         $media->extension = 'png';
-        $media->name      = 'Promotion Media';
+        $media->name      = 'Event Media';
         $promotion->addMedia($media);
 
         $id = PromotionMapper::create($promotion);
@@ -74,15 +78,16 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
 
         $promotionR = PromotionMapper::get($promotion->getId());
 
-        self::assertEquals($promotion->getName(), $promotionR->getName());
+        self::assertEquals($promotion->name, $promotionR->name);
         self::assertEquals($promotion->description, $promotionR->description);
         self::assertEquals($promotion->countTasks(), $promotionR->countTasks());
-        self::assertEquals($promotion->getCosts()->getAmount(), $promotionR->getCosts()->getAmount());
-        self::assertEquals($promotion->getBudget()->getAmount(), $promotionR->getBudget()->getAmount());
-        self::assertEquals($promotion->getEarnings()->getAmount(), $promotionR->getEarnings()->getAmount());
-        self::assertEquals($promotion->createdAt->format('Y-m-d'), $promotionR->createdAt->format('Y-m-d'));
-        self::assertEquals($promotion->getStart()->format('Y-m-d'), $promotionR->getStart()->format('Y-m-d'));
-        self::assertEquals($promotion->getEnd()->format('Y-m-d'), $promotionR->getEnd()->format('Y-m-d'));
+        self::assertEquals($promotion->start->format('Y-m-d'), $promotionR->start->format('Y-m-d'));
+        self::assertEquals($promotion->end->format('Y-m-d'), $promotionR->end->format('Y-m-d'));
+        self::assertEquals($promotion->costs->getAmount(), $promotionR->costs->getAmount());
+        self::assertEquals($promotion->budget->getAmount(), $promotionR->budget->getAmount());
+        self::assertEquals($promotion->earnings->getAmount(), $promotionR->earnings->getAmount());
+        self::assertEquals($promotion->progress, $promotionR->progress);
+        self::assertEquals($promotion->getProgressType(), $promotionR->getProgressType());
 
         $expected = $promotion->getMedia();
         $actual   = $promotionR->getMedia();
@@ -99,34 +104,5 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $newest = PromotionMapper::getNewest(1);
 
         self::assertCount(1, $newest);
-    }
-
-    /**
-     * @group volume
-     * @group module
-     * @coversNothing
-     */
-    public function testVolume() : void
-    {
-        for ($i = 1; $i < 100; ++$i) {
-            $text = new Text();
-
-            $promotion = new Promotion();
-
-            $promotion->setName($text->generateText(\mt_rand(3, 7)));
-            $promotion->description = $text->generateText(\mt_rand(20, 100));
-            $promotion->createdBy   = new NullAccount(1);
-            $promotion->setStart(new \DateTime('2000-05-05'));
-            $promotion->setEnd(new \DateTime('2005-05-05'));
-
-            $money = new Money();
-            $money->setString('1.23');
-
-            $promotion->setCosts($money);
-            $promotion->setBudget($money);
-            $promotion->setEarnings($money);
-
-            $id = PromotionMapper::create($promotion);
-        }
     }
 }

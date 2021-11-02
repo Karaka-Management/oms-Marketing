@@ -18,10 +18,11 @@ use Modules\Admin\Models\Account;
 use Modules\Admin\Models\NullAccount;
 use Modules\Calendar\Models\Calendar;
 use Modules\Tasks\Models\Task;
+use Modules\Tasks\Models\NullTask;
 use phpOMS\Localization\Money;
 
 /**
- * Project class.
+ * Promotion class.
  *
  * @package Modules\Marketing\Models
  * @license OMS License 1.0
@@ -39,20 +40,20 @@ class Promotion
     protected int $id = 0;
 
     /**
-     * Start of the promotion.
+     * Event start.
      *
      * @var \DateTime
      * @since 1.0.0
      */
-    private \DateTime $start;
+    public \DateTime $start;
 
     /**
-     * End of the promotion.
+     * Event end.
      *
      * @var \DateTime
      * @since 1.0.0
      */
-    private \DateTime $end;
+    public \DateTime $end;
 
     /**
      * Name.
@@ -60,7 +61,7 @@ class Promotion
      * @var string
      * @since 1.0.0
      */
-    private string $name = '';
+    public string $name = '';
 
     /**
      * Description.
@@ -76,7 +77,7 @@ class Promotion
      * @var Calendar
      * @since 1.0.0
      */
-    private Calendar $calendar;
+    public Calendar $calendar;
 
     /**
      * Costs.
@@ -84,7 +85,7 @@ class Promotion
      * @var Money
      * @since 1.0.0
      */
-    private Money $costs;
+    public Money $costs;
 
     /**
      * Budget.
@@ -92,7 +93,7 @@ class Promotion
      * @var Money
      * @since 1.0.0
      */
-    private Money $budget;
+    public Money $budget;
 
     /**
      * Earnings.
@@ -100,7 +101,15 @@ class Promotion
      * @var Money
      * @since 1.0.0
      */
-    private Money $earnings;
+    public Money $earnings;
+
+    /**
+     * Tasks.
+     *
+     * @var Task[]
+     * @since 1.0.0
+     */
+    private array $tasks = [];
 
     /**
      * Media.
@@ -116,7 +125,7 @@ class Promotion
      * @var int
      * @since 1.0.0
      */
-    private int $progress = 0;
+    public int $progress = 0;
 
     /**
      * Progress type.
@@ -127,7 +136,7 @@ class Promotion
     private int $progressType = ProgressType::MANUAL;
 
     /**
-     * Created at.
+     * Created.
      *
      * @var \DateTimeImmutable
      * @since 1.0.0
@@ -135,7 +144,7 @@ class Promotion
     public \DateTimeImmutable $createdAt;
 
     /**
-     * Created by.
+     * Creator.
      *
      * @var Account
      * @since 1.0.0
@@ -143,35 +152,24 @@ class Promotion
     public Account $createdBy;
 
     /**
-     * Tasks.
+     * Constructor.
      *
-     * @var Task[]
-     * @since 1.0.0
-     */
-    private array $tasks = [];
-
-    /**
-     * Cosntructor
-     *
-     * @param string $name Promotion name
+     * @param string $name Event name/title
      *
      * @since 1.0.0
      */
     public function __construct(string $name = '')
     {
-        $this->start = new \DateTime('now');
-        $this->end   = new \DateTime('now');
-        $this->end->modify('+1 month');
+        $this->start     = new \DateTime('now');
+        $this->end       = (new \DateTime('now'))->modify('+1 month');
+        $this->calendar  = new Calendar();
+        $this->costs     = new Money();
+        $this->budget    = new Money();
+        $this->earnings  = new Money();
         $this->createdAt = new \DateTimeImmutable('now');
         $this->createdBy = new NullAccount();
 
-        $this->calendar = new Calendar();
-
-        $this->costs    = new Money();
-        $this->budget   = new Money();
-        $this->earnings = new Money();
-
-        $this->setName($name);
+        $this->name = $name;
     }
 
     /**
@@ -213,6 +211,32 @@ class Promotion
     }
 
     /**
+     * Get progress type.
+     *
+     * @return int
+     *
+     * @since 1.0.0
+     */
+    public function getProgressType() : int
+    {
+        return $this->progressType;
+    }
+
+    /**
+     * Set progress type.
+     *
+     * @param int $type Progress type
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     */
+    public function setProgressType(int $type) : void
+    {
+        $this->progressType = $type;
+    }
+
+    /**
      * Add task.
      *
      * @param Task $task Task
@@ -223,11 +247,7 @@ class Promotion
      */
     public function addTask(Task $task) : void
     {
-        if ($task->getId() !== 0) {
-            $this->tasks[$task->getId()] = $task;
-        } else {
-            $this->tasks[] = $task;
-        }
+        $this->tasks[] = $task;
     }
 
     /**
@@ -261,7 +281,7 @@ class Promotion
      */
     public function getTask(int $id) : Task
     {
-        return $this->tasks[$id] ?? new Task();
+        return $this->tasks[$id] ?? new NullTask();
     }
 
     /**
@@ -289,223 +309,33 @@ class Promotion
     }
 
     /**
-     * Get start date.
-     *
-     * @return \DateTime
-     *
-     * @since 1.0.0
+     * {@inheritdoc}
      */
-    public function getStart() : \DateTime
+    public function toArray() : array
     {
-        return $this->start;
+        return [
+            'id'           => $this->id,
+            'start'        => $this->start,
+            'end'          => $this->end,
+            'name'         => $this->name,
+            'description'  => $this->description,
+            'calendar'     => $this->calendar,
+            'costs'        => $this->costs,
+            'budget'       => $this->budget,
+            'earnings'     => $this->earnings,
+            'tasks'        => $this->tasks,
+            'media'        => $this->media,
+            'progress'     => $this->progress,
+            'progressType' => $this->progressType,
+            'createdAt'    => $this->createdAt,
+        ];
     }
 
     /**
-     * Set start date.
-     *
-     * @param \DateTime $start Start date
-     *
-     * @return void
-     *
-     * @since 1.0.0
+     * {@inheritdoc}
      */
-    public function setStart(\DateTime $start) : void
+    public function jsonSerialize()
     {
-        $this->start = $start;
-    }
-
-    /**
-     * Set end.
-     *
-     * @param \DateTime $end End date
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setEnd(\DateTime $end) : void
-    {
-        $this->end = $end;
-    }
-
-    /**
-     * Get end.
-     *
-     * @return \DateTime
-     *
-     * @since 1.0.0
-     */
-    public function getEnd() : \DateTime
-    {
-        return $this->end;
-    }
-
-    /**
-     * Get progress.
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getProgress() : int
-    {
-        return $this->progress;
-    }
-
-    /**
-     * Set progress.
-     *
-     * @param int $progress Progress
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setProgress(int $progress) : void
-    {
-        $this->progress = $progress;
-    }
-
-    /**
-     * Get progress type.
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getProgressType() : int
-    {
-        return $this->progressType;
-    }
-
-    /**
-     * Set progress type.
-     *
-     * @param int $type Progress type
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setProgressType(int $type) : void
-    {
-        $this->progressType = $type;
-    }
-
-    /**
-     * Get calendar.
-     *
-     * @return Calendar
-     *
-     * @since 1.0.0
-     */
-    public function getCalendar() : Calendar
-    {
-        return $this->calendar;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getName() : string
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name Name
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setName(string $name) : void
-    {
-        $this->name           = $name;
-        $this->calendar->name = $name;
-    }
-
-    /**
-     * Get costs.
-     *
-     * @return Money
-     *
-     * @since 1.0.0
-     */
-    public function getCosts() : Money
-    {
-        return $this->costs;
-    }
-
-    /**
-     * Get budget.
-     *
-     * @return Money
-     *
-     * @since 1.0.0
-     */
-    public function getBudget() : Money
-    {
-        return $this->budget;
-    }
-
-    /**
-     * Get earnings.
-     *
-     * @return Money
-     *
-     * @since 1.0.0
-     */
-    public function getEarnings() : Money
-    {
-        return $this->earnings;
-    }
-
-    /**
-     * Set costs.
-     *
-     * @param Money $costs Costs
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setCosts(Money $costs) : void
-    {
-        $this->costs = $costs;
-    }
-
-    /**
-     * Set budget.
-     *
-     * @param Money $budget Budget
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setBudget(Money $budget) : void
-    {
-        $this->budget = $budget;
-    }
-
-    /**
-     * Set earnings.
-     *
-     * @param Money $earnings Earnings
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setEarnings(Money $earnings) : void
-    {
-        $this->earnings = $earnings;
+        return $this->toArray();
     }
 }
