@@ -15,13 +15,12 @@ declare(strict_types=1);
 namespace Modules\Marketing\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
+use Modules\Marketing\Models\ProgressType;
 use Modules\Marketing\Models\Promotion;
 use Modules\Marketing\Models\PromotionMapper;
-use Modules\Marketing\Models\ProgressType;
 use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
-use phpOMS\Utils\RnG\Text;
 
 /**
  * @internal
@@ -36,7 +35,7 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
     {
         $promotion = new Promotion();
 
-        $promotion->name = 'Promotionname';
+        $promotion->name        = 'Promotionname';
         $promotion->description = 'Description';
         $promotion->createdBy   = new NullAccount(1);
         $promotion->start       = new \DateTime('2000-05-05');

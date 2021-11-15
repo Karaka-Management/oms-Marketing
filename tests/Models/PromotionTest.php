@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace Modules\Marketing\tests\Models;
 
-use Modules\Marketing\Models\Promotion;
 use Modules\Marketing\Models\ProgressType;
+use Modules\Marketing\Models\Promotion;
 use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
@@ -154,7 +154,7 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
         $this->promotion->description = 'Description';
         $this->promotion->start       = new \DateTime();
         $this->promotion->end         = new \DateTime();
-        $this->promotion->progress = 10;
+        $this->promotion->progress    = 10;
         $this->promotion->setProgressType(ProgressType::TASKS);
 
         $serialized = $this->promotion->jsonSerialize();
