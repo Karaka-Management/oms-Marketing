@@ -27,18 +27,23 @@
                 "foreignTable": "calendar",
                 "foreignKey": "calendar_id"
             },
-            "marketing_promotion_costs": {
-                "name": "marketing_promotion_costs",
+            "marketing_promotion_budgetcosts": {
+                "name": "marketing_promotion_budgetcosts",
                 "type": "INT",
                 "null": false
             },
-            "marketing_promotion_budget": {
-                "name": "marketing_promotion_budget",
+            "marketing_promotion_budgetearnings": {
+                "name": "marketing_promotion_budgetearnings",
                 "type": "INT",
                 "null": false
             },
-            "marketing_promotion_earnings": {
-                "name": "marketing_promotion_earnings",
+            "marketing_promotion_actualcosts": {
+                "name": "marketing_promotion_actualcosts",
+                "type": "INT",
+                "null": false
+            },
+            "marketing_promotion_actualearnings": {
+                "name": "marketing_promotion_actualearnings",
                 "type": "INT",
                 "null": false
             },
@@ -102,6 +107,37 @@
             }
         }
     },
+    "marketing_promotion_accountrel": {
+        "name": "marketing_promotion_accountrel",
+        "fields": {
+            "marketing_promotion_accountrel_id": {
+                "name": "marketing_promotion_accountrel_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "marketing_promotion_accountrel_promotion": {
+                "name": "marketing_promotion_accountrel_promotion",
+                "type": "INT",
+                "null": false,
+                "foreignTable": "marketing_promotion",
+                "foreignKey": "marketing_promotion_id"
+            },
+            "marketing_promotion_accountrel_type": {
+                "name": "marketing_promotion_accountrel_type",
+                "type": "INT",
+                "null": false
+            },
+            "marketing_promotion_accountrel_account": {
+                "name": "marketing_promotion_accountrel_account",
+                "type": "INT",
+                "null": false,
+                "foreignTable": "account",
+                "foreignKey": "account_id"
+            }
+        }
+    },
     "marketing_promotion_task_relation": {
         "name": "marketing_promotion_task_relation",
         "fields": {
@@ -125,6 +161,198 @@
                 "null": false,
                 "foreignTable": "marketing_promotion",
                 "foreignKey": "marketing_promotion_id"
+            }
+        }
+    },
+    "marketing_promotion_attr_type": {
+        "name": "marketing_promotion_attr_type",
+        "fields": {
+            "marketing_promotion_attr_type_id": {
+                "name": "marketing_promotion_attr_type_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "marketing_promotion_attr_type_name": {
+                "name": "marketing_promotion_attr_type_name",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "marketing_promotion_attr_type_fields": {
+                "name": "marketing_promotion_attr_type_fields",
+                "type": "INT(11)",
+                "null": false
+            },
+            "marketing_promotion_attr_type_custom": {
+                "name": "marketing_promotion_attr_type_custom",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "marketing_promotion_attr_type_required": {
+                "description": "Every promotion must have this attribute type if set to true.",
+                "name": "marketing_promotion_attr_type_required",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "marketing_promotion_attr_type_pattern": {
+                "description": "This is a regex validation pattern.",
+                "name": "marketing_promotion_attr_type_pattern",
+                "type": "VARCHAR(255)",
+                "null": false
+            }
+        }
+    },
+    "marketing_promotion_attr_type_l11n": {
+        "name": "marketing_promotion_attr_type_l11n",
+        "fields": {
+            "marketing_promotion_attr_type_l11n_id": {
+                "name": "marketing_promotion_attr_type_l11n_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "marketing_promotion_attr_type_l11n_title": {
+                "name": "marketing_promotion_attr_type_l11n_title",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "marketing_promotion_attr_type_l11n_type": {
+                "name": "marketing_promotion_attr_type_l11n_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "marketing_promotion_attr_type",
+                "foreignKey": "marketing_promotion_attr_type_id"
+            },
+            "marketing_promotion_attr_type_l11n_lang": {
+                "name": "marketing_promotion_attr_type_l11n_lang",
+                "type": "VARCHAR(2)",
+                "null": false,
+                "foreignTable": "language",
+                "foreignKey": "language_639_1"
+            }
+        }
+    },
+    "marketing_promotion_attr_value": {
+        "name": "marketing_promotion_attr_value",
+        "fields": {
+            "marketing_promotion_attr_value_id": {
+                "name": "marketing_promotion_attr_value_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "marketing_promotion_attr_value_default": {
+                "name": "marketing_promotion_attr_value_default",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "marketing_promotion_attr_value_type": {
+                "name": "marketing_promotion_attr_value_type",
+                "type": "INT(11)",
+                "null": false
+            },
+            "marketing_promotion_attr_value_valueStr": {
+                "name": "marketing_promotion_attr_value_valueStr",
+                "type": "VARCHAR(255)",
+                "null": true,
+                "default": null
+            },
+            "marketing_promotion_attr_value_valueInt": {
+                "name": "marketing_promotion_attr_value_valueInt",
+                "type": "INT(11)",
+                "null": true,
+                "default": null
+            },
+            "marketing_promotion_attr_value_valueDec": {
+                "name": "marketing_promotion_attr_value_valueDec",
+                "type": "DECIMAL(19,5)",
+                "null": true,
+                "default": null
+            },
+            "marketing_promotion_attr_value_valueDat": {
+                "name": "marketing_promotion_attr_value_valueDat",
+                "type": "DATETIME",
+                "null": true,
+                "default": null
+            },
+            "marketing_promotion_attr_value_lang": {
+                "name": "marketing_promotion_attr_value_lang",
+                "type": "VARCHAR(2)",
+                "null": true,
+                "default": null,
+                "foreignTable": "language",
+                "foreignKey": "language_639_1"
+            },
+            "marketing_promotion_attr_value_country": {
+                "name": "marketing_promotion_attr_value_country",
+                "type": "VARCHAR(2)",
+                "null": true,
+                "default": null,
+                "foreignTable": "country",
+                "foreignKey": "country_code2"
+            }
+        }
+    },
+    "marketing_promotion_attr_default": {
+        "name": "marketing_promotion_attr_default",
+        "fields": {
+            "marketing_promotion_attr_default_id": {
+                "name": "marketing_promotion_attr_default_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "marketing_promotion_attr_default_type": {
+                "name": "marketing_promotion_attr_default_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "marketing_promotion_attr_type",
+                "foreignKey": "marketing_promotion_attr_type_id"
+            },
+            "marketing_promotion_attr_default_value": {
+                "name": "marketing_promotion_attr_default_value",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "marketing_promotion_attr_value",
+                "foreignKey": "marketing_promotion_attr_value_id"
+            }
+        }
+    },
+    "marketing_promotion_attr": {
+        "name": "marketing_promotion_attr",
+        "fields": {
+            "marketing_promotion_attr_id": {
+                "name": "marketing_promotion_attr_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "marketing_promotion_attr_promotion": {
+                "name": "marketing_promotion_attr_promotion",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "marketing_promotion",
+                "foreignKey": "marketing_promotion_id"
+            },
+            "marketing_promotion_attr_type": {
+                "name": "marketing_promotion_attr_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "marketing_promotion_attr_type",
+                "foreignKey": "marketing_promotion_attr_type_id"
+            },
+            "marketing_promotion_attr_value": {
+                "name": "marketing_promotion_attr_value",
+                "type": "INT(11)",
+                "null": true,
+                "default": null,
+                "foreignTable": "marketing_promotion_attr_value",
+                "foreignKey": "marketing_promotion_attr_value_id"
             }
         }
     }

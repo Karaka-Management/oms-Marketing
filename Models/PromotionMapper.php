@@ -41,9 +41,10 @@ final class PromotionMapper extends DataMapperAbstract
         'marketing_promotion_name'          => ['name' => 'marketing_promotion_name',          'type' => 'string',       'internal' => 'name'],
         'marketing_promotion_description'   => ['name' => 'marketing_promotion_description',   'type' => 'string',       'internal' => 'description'],
         'marketing_promotion_calendar'      => ['name' => 'marketing_promotion_calendar',      'type' => 'int',          'internal' => 'calendar'],
-        'marketing_promotion_costs'         => ['name' => 'marketing_promotion_costs',         'type' => 'Serializable', 'internal' => 'costs'],
-        'marketing_promotion_budget'        => ['name' => 'marketing_promotion_budget',        'type' => 'Serializable', 'internal' => 'budget'],
-        'marketing_promotion_earnings'      => ['name' => 'marketing_promotion_earnings',      'type' => 'Serializable', 'internal' => 'earnings'],
+        'marketing_promotion_budgetcosts'         => ['name' => 'marketing_promotion_budgetcosts',         'type' => 'Serializable', 'internal' => 'budgetCosts'],
+        'marketing_promotion_budgetearnings'        => ['name' => 'marketing_promotion_budgetearnings',        'type' => 'Serializable', 'internal' => 'budgetEarnings'],
+        'marketing_promotion_actualcosts'      => ['name' => 'marketing_promotion_actualcosts',      'type' => 'Serializable', 'internal' => 'actualCosts'],
+        'marketing_promotion_actualearnings'      => ['name' => 'marketing_promotion_actualearnings',      'type' => 'Serializable', 'internal' => 'actualEarnings'],
         'marketing_promotion_start'         => ['name' => 'marketing_promotion_start',         'type' => 'DateTime',     'internal' => 'start'],
         'marketing_promotion_end'           => ['name' => 'marketing_promotion_end',           'type' => 'DateTime',     'internal' => 'end'],
         'marketing_promotion_progress'      => ['name' => 'marketing_promotion_progress',      'type' => 'int',          'internal' => 'progress'],
@@ -70,6 +71,19 @@ final class PromotionMapper extends DataMapperAbstract
             'table'    => 'marketing_promotion_media',
             'external' => 'marketing_promotion_media_dst',
             'self'     => 'marketing_promotion_media_src',
+        ],
+        'accountRelations' => [
+            'mapper'       => AccountRelationMapper::class,
+            'table'        => 'marketing_promotion_accountrel',
+            'self'         => 'marketing_promotion_accountrel_promotion',
+            'external'     => null,
+        ],
+        'attributes' => [
+            'mapper'      => PromotionAttributeMapper::class,
+            'table'       => 'marketing_promotion_attr',
+            'self'        => 'marketing_promotion_attr_promotion',
+            'conditional' => true,
+            'external'    => null,
         ],
     ];
 

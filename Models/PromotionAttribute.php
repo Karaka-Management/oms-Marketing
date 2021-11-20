@@ -1,0 +1,104 @@
+<?php
+/**
+ * Orange Management
+ *
+ * PHP Version 8.0
+ *
+ * @package   Modules\Marketing\Models
+ * @copyright Dennis Eichhorn
+ * @license   OMS License 1.0
+ * @version   1.0.0
+ * @link      https://orange-management.org
+ */
+declare(strict_types=1);
+
+namespace Modules\Marketing\Models;
+
+use phpOMS\Contract\ArrayableInterface;
+
+/**
+ * Promotion class.
+ *
+ * @package Modules\Marketing\Models
+ * @license OMS License 1.0
+ * @link    https://orange-management.org
+ * @since   1.0.0
+ */
+class PromotionAttribute implements \JsonSerializable, ArrayableInterface
+{
+    /**
+     * Id.
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    protected int $id = 0;
+
+    /**
+     * Promotion this attribute belongs to
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    public int $promotion = 0;
+
+    /**
+     * Attribute type the attribute belongs to
+     *
+     * @var PromotionAttributeType
+     * @since 1.0.0
+     */
+    public PromotionAttributeType $type;
+
+    /**
+     * Attribute value the attribute belongs to
+     *
+     * @var PromotionAttributeValue
+     * @since 1.0.0
+     */
+    public PromotionAttributeValue $value;
+
+    /**
+     * Constructor.
+     *
+     * @since 1.0.0
+     */
+    public function __construct()
+    {
+        $this->type  = new NullPromotionAttributeType();
+        $this->value = new NullPromotionAttributeValue();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     *
+     * @since 1.0.0
+     */
+    public function getId() : int
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toArray() : array
+    {
+        return [
+            'id'    => $this->id,
+            'item'  => $this->item,
+            'type'  => $this->type,
+            'value' => $this->value,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        return $this->toArray();
+    }
+}

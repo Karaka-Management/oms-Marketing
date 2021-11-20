@@ -45,54 +45,16 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
         self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $this->promotion->calendar);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->promotion->start->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $this->promotion->end->format('Y-m-d'));
-        self::assertEquals(0, $this->promotion->costs->getInt());
-        self::assertEquals(0, $this->promotion->budget->getInt());
-        self::assertEquals(0, $this->promotion->earnings->getInt());
+        self::assertEquals(0, $this->promotion->budgetCosts->getInt());
+        self::assertEquals(0, $this->promotion->budgetEarnings->getInt());
+        self::assertEquals(0, $this->promotion->actualCosts->getInt());
+        self::assertEquals(0, $this->promotion->actualEarnings->getInt());
         self::assertFalse($this->promotion->removeTask(2));
         self::assertEmpty($this->promotion->getTasks());
         self::assertEmpty($this->promotion->getMedia());
         self::assertInstanceOf('\Modules\Tasks\Models\NullTask', $this->promotion->getTask(1));
         self::assertEquals(0, $this->promotion->progress);
         self::assertEquals(ProgressType::MANUAL, $this->promotion->getProgressType());
-    }
-
-    /**
-     * @covers Modules\Marketing\Models\Promotion
-     * @group module
-     */
-    public function testCostsInputOutput() : void
-    {
-        $money = new Money();
-        $money->setString('1.23');
-
-        $this->promotion->costs = $money;
-        self::assertEquals($money->getAmount(), $this->promotion->costs->getAmount());
-    }
-
-    /**
-     * @covers Modules\Marketing\Models\Promotion
-     * @group module
-     */
-    public function testBudgetInputOutput() : void
-    {
-        $money = new Money();
-        $money->setString('1.23');
-
-        $this->promotion->budget = $money;
-        self::assertEquals($money->getAmount(), $this->promotion->budget->getAmount());
-    }
-
-    /**
-     * @covers Modules\Marketing\Models\Promotion
-     * @group module
-     */
-    public function testEarningsInputOutput() : void
-    {
-        $money = new Money();
-        $money->setString('1.23');
-
-        $this->promotion->earnings = $money;
-        self::assertEquals($money->getAmount(), $this->promotion->earnings->getAmount());
     }
 
     /**
@@ -168,9 +130,10 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
                 'end'          => $this->promotion->end,
                 'name'         => 'Name',
                 'description'  => 'Description',
-                'costs'        => new Money(),
-                'budget'       => new Money(),
-                'earnings'     => new Money(),
+                'budgetCosts'        => new Money(),
+                'budgetEarnings'       => new Money(),
+                'actualCosts'     => new Money(),
+                'actualEarnings'     => new Money(),
                 'tasks'        => [],
                 'media'        => [],
                 'progress'     => 10,

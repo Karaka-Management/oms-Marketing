@@ -79,29 +79,37 @@ class Promotion
      */
     public Calendar $calendar;
 
-    /**
-     * Costs.
+     /**
+     * Budget costs.
      *
      * @var Money
      * @since 1.0.0
      */
-    public Money $costs;
+    public Money $budgetCosts;
 
     /**
-     * Budget.
+     * Budget earnings.
      *
      * @var Money
      * @since 1.0.0
      */
-    public Money $budget;
+    public Money $budgetEarnings;
 
     /**
-     * Earnings.
+     * Current total costs.
      *
      * @var Money
      * @since 1.0.0
      */
-    public Money $earnings;
+    public Money $actualCosts;
+
+    /**
+     * Current total earnings.
+     *
+     * @var Money
+     * @since 1.0.0
+     */
+    public Money $actualEarnings;
 
     /**
      * Tasks.
@@ -152,6 +160,22 @@ class Promotion
     public Account $createdBy;
 
     /**
+     * Account relations
+     *
+     * @var AccountRelation[]
+     * @since 1.0.0
+     */
+    private array $accountRelations = [];
+
+    /**
+     * Attributes.
+     *
+     * @var int[]|PromotionAttribute[]
+     * @since 1.0.0
+     */
+    private array $attributes = [];
+
+    /**
      * Constructor.
      *
      * @param string $name Event name/title
@@ -163,9 +187,10 @@ class Promotion
         $this->start     = new \DateTime('now');
         $this->end       = (new \DateTime('now'))->modify('+1 month');
         $this->calendar  = new Calendar();
-        $this->costs     = new Money();
-        $this->budget    = new Money();
-        $this->earnings  = new Money();
+        $this->actualCosts    = new Money();
+        $this->actualEarnings = new Money();
+        $this->budgetCosts    = new Money();
+        $this->budgetEarnings = new Money();
         $this->createdAt = new \DateTimeImmutable('now');
         $this->createdBy = new NullAccount();
 
@@ -309,6 +334,46 @@ class Promotion
     }
 
     /**
+     * Add account relation
+     *
+     * @param AccountRelation $accRel Account relation
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     */
+    public function addAccount(AccountRelation $accRel) : void
+    {
+        $this->accountRelations[] = $accRel;
+    }
+
+    /**
+     * Add attribute to item
+     *
+     * @param PromotionAttribute $attribute Note
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     */
+    public function addAttribute(PromotionAttribute $attribute) : void
+    {
+        $this->attributes[] = $attribute;
+    }
+
+    /**
+     * Get attributes
+     *
+     * @return int[]|PromotionAttribute[]
+     *
+     * @since 1.0.0
+     */
+    public function getAttributes() : array
+    {
+        return $this->attributes;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function toArray() : array
@@ -320,9 +385,10 @@ class Promotion
             'name'         => $this->name,
             'description'  => $this->description,
             'calendar'     => $this->calendar,
-            'costs'        => $this->costs,
-            'budget'       => $this->budget,
-            'earnings'     => $this->earnings,
+            'budgetCosts'          => $this->budgetCosts,
+            'budgetEarnings'       => $this->budgetEarnings,
+            'actualCosts'          => $this->actualCosts,
+            'actualEarnings'       => $this->actualEarnings,
             'tasks'        => $this->tasks,
             'media'        => $this->media,
             'progress'     => $this->progress,

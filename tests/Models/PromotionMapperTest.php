@@ -44,9 +44,10 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $money = new Money();
         $money->setString('1.23');
 
-        $promotion->costs    = $money;
-        $promotion->budget   = $money;
-        $promotion->earnings = $money;
+        $promotion->budgetCosts    = $money;
+        $promotion->budgetEarnings   = $money;
+        $promotion->actualCosts = $money;
+        $promotion->actualEarnings = $money;
 
         $task        = new Task();
         $task->title = 'EventTask 1';
@@ -82,9 +83,10 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($promotion->countTasks(), $promotionR->countTasks());
         self::assertEquals($promotion->start->format('Y-m-d'), $promotionR->start->format('Y-m-d'));
         self::assertEquals($promotion->end->format('Y-m-d'), $promotionR->end->format('Y-m-d'));
-        self::assertEquals($promotion->costs->getAmount(), $promotionR->costs->getAmount());
-        self::assertEquals($promotion->budget->getAmount(), $promotionR->budget->getAmount());
-        self::assertEquals($promotion->earnings->getAmount(), $promotionR->earnings->getAmount());
+        self::assertEquals($promotion->budgetCosts->getAmount(), $promotionR->budgetCosts->getAmount());
+        self::assertEquals($promotion->budgetEarnings->getAmount(), $promotionR->budgetEarnings->getAmount());
+        self::assertEquals($promotion->actualCosts->getAmount(), $promotionR->actualCosts->getAmount());
+        self::assertEquals($promotion->actualEarnings->getAmount(), $promotionR->actualEarnings->getAmount());
         self::assertEquals($promotion->progress, $promotionR->progress);
         self::assertEquals($promotion->getProgressType(), $promotionR->getProgressType());
 
