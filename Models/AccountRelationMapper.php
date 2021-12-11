@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Modules\Marketing\Models;
 
 use Modules\Admin\Models\AccountMapper;
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Mapper class.
@@ -25,7 +25,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class AccountRelationMapper extends DataMapperAbstract
+final class AccountRelationMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -33,7 +33,7 @@ final class AccountRelationMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'marketing_promotion_accountrel_id'           => ['name' => 'marketing_promotion_accountrel_id',           'type' => 'int', 'internal' => 'id'],
         'marketing_promotion_accountrel_promotion'         => ['name' => 'marketing_promotion_accountrel_promotion',         'type' => 'int', 'internal' => 'promotion'],
         'marketing_promotion_accountrel_type'        => ['name' => 'marketing_promotion_accountrel_type',        'type' => 'int', 'internal' => 'type'],
@@ -45,7 +45,7 @@ final class AccountRelationMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string, by?:string, column?:string, conditional?:bool}>
      * @since 1.0.0
      */
-    protected static array $ownsOne = [
+    public const OWNS_ONE = [
         'account' => [
             'mapper'     => AccountMapper::class,
             'external'   => 'marketing_promotion_accountrel_account',
@@ -58,7 +58,7 @@ final class AccountRelationMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'marketing_promotion_accountrel';
+    public const TABLE = 'marketing_promotion_accountrel';
 
     /**
      * Primary field name.
@@ -66,5 +66,5 @@ final class AccountRelationMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'marketing_promotion_accountrel_id';
+    public const PRIMARYFIELD ='marketing_promotion_accountrel_id';
 }

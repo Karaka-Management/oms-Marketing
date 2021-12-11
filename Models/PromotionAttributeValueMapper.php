@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\Marketing\Models;
 
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Promotion mapper class.
@@ -24,7 +24,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https:   //orange-management.org
  * @since   1.0.0
  */
-final class PromotionAttributeValueMapper extends DataMapperAbstract
+final class PromotionAttributeValueMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -32,7 +32,7 @@ final class PromotionAttributeValueMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'marketing_promotion_attr_value_id'       => ['name' => 'marketing_promotion_attr_value_id',       'type' => 'int',    'internal' => 'id'],
         'marketing_promotion_attr_value_default'  => ['name' => 'marketing_promotion_attr_value_default',  'type' => 'bool', 'internal' => 'isDefault'],
         'marketing_promotion_attr_value_type'     => ['name' => 'marketing_promotion_attr_value_type',     'type' => 'int',    'internal' => 'type'],
@@ -50,7 +50,7 @@ final class PromotionAttributeValueMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'marketing_promotion_attr_value';
+    public const TABLE = 'marketing_promotion_attr_value';
 
     /**
      * Primary field name.
@@ -58,5 +58,5 @@ final class PromotionAttributeValueMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'marketing_promotion_attr_value_id';
+    public const PRIMARYFIELD ='marketing_promotion_attr_value_id';
 }

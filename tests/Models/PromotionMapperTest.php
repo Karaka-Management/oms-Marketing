@@ -20,6 +20,7 @@ use Modules\Marketing\Models\Promotion;
 use Modules\Marketing\Models\PromotionMapper;
 use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
+use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Localization\Money;
 
 /**
@@ -72,11 +73,14 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $media->name      = 'Event Media';
         $promotion->addMedia($media);
 
-        $id = PromotionMapper::create($promotion);
+        $id = PromotionMapper::create()->execute($promotion);
         self::assertGreaterThan(0, $promotion->getId());
         self::assertEquals($id, $promotion->getId());
 
-        $promotionR = PromotionMapper::get($promotion->getId());
+        $promotionR = PromotionMapper::get()
+            ->with('tasks')
+            ->with('media')
+            ->where('id', $promotion->getId())->execute();
 
         self::assertEquals($promotion->name, $promotionR->name);
         self::assertEquals($promotion->description, $promotionR->description);
@@ -102,7 +106,7 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
      */
     public function testNewest() : void
     {
-        $newest = PromotionMapper::getNewest(1);
+        $newest = PromotionMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->execute();
 
         self::assertCount(1, $newest);
     }

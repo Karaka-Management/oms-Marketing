@@ -18,7 +18,7 @@ use Modules\Admin\Models\AccountMapper;
 use Modules\Calendar\Models\CalendarMapper;
 use Modules\Media\Models\MediaMapper;
 use Modules\Tasks\Models\TaskMapper;
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Mapper class.
@@ -28,7 +28,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class PromotionMapper extends DataMapperAbstract
+final class PromotionMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -36,7 +36,7 @@ final class PromotionMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'marketing_promotion_id'            => ['name' => 'marketing_promotion_id',            'type' => 'int',          'internal' => 'id'],
         'marketing_promotion_name'          => ['name' => 'marketing_promotion_name',          'type' => 'string',       'internal' => 'name'],
         'marketing_promotion_description'   => ['name' => 'marketing_promotion_description',   'type' => 'string',       'internal' => 'description'],
@@ -59,7 +59,7 @@ final class PromotionMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, table:string, self?:?string, external?:?string, column?:string}>
      * @since 1.0.0
      */
-    protected static array $hasMany = [
+    public const HAS_MANY = [
         'tasks' => [
             'mapper'   => TaskMapper::class,
             'table'    => 'marketing_promotion_task_relation',
@@ -93,7 +93,7 @@ final class PromotionMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string, by?:string, column?:string, conditional?:bool}>
      * @since 1.0.0
      */
-    protected static array $ownsOne = [
+    public const OWNS_ONE = [
         'calendar' => [
             'mapper'     => CalendarMapper::class,
             'external'   => 'marketing_promotion_calendar',
@@ -106,7 +106,7 @@ final class PromotionMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string}>
      * @since 1.0.0
      */
-    protected static array $belongsTo = [
+    public const BELONGS_TO = [
         'createdBy' => [
             'mapper'     => AccountMapper::class,
             'external'   => 'marketing_promotion_created_by',
@@ -119,7 +119,7 @@ final class PromotionMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'marketing_promotion';
+    public const TABLE = 'marketing_promotion';
 
     /**
      * Created at.
@@ -127,7 +127,7 @@ final class PromotionMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $createdAt = 'marketing_promotion_created_at';
+    public const CREATED_AT = 'marketing_promotion_created_at';
 
     /**
      * Primary field name.
@@ -135,5 +135,5 @@ final class PromotionMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'marketing_promotion_id';
+    public const PRIMARYFIELD ='marketing_promotion_id';
 }

@@ -55,7 +55,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Marketing/Theme/Backend/promotion-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1001902001, $request, $response));
 
-        $promotions = PromotionMapper::getNewest(25);
+        $promotions = PromotionMapper::getAll()->limit(25)->execute();
         $view->addData('promotions', $promotions);
 
         return $view;
@@ -95,7 +95,7 @@ final class BackendController extends Controller
         $mediaListView->setTemplate('/Modules/Media/Theme/Backend/Components/Media/list');
         $view->addData('medialist', $mediaListView);
 
-        $promotion = PromotionMapper::get((int) $request->getData('id'));
+        $promotion = PromotionMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $view->addData('promotion', $promotion);
 
         return $view;

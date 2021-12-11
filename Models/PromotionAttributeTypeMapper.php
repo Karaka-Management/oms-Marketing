@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\Marketing\Models;
 
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Promotion mapper class.
@@ -24,7 +24,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class PromotionAttributeTypeMapper extends DataMapperAbstract
+final class PromotionAttributeTypeMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -32,7 +32,7 @@ final class PromotionAttributeTypeMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'marketing_promotion_attr_type_id'       => ['name' => 'marketing_promotion_attr_type_id',     'type' => 'int',    'internal' => 'id'],
         'marketing_promotion_attr_type_name'     => ['name' => 'marketing_promotion_attr_type_name',   'type' => 'string', 'internal' => 'name', 'autocomplete' => true],
         'marketing_promotion_attr_type_fields'   => ['name' => 'marketing_promotion_attr_type_fields', 'type' => 'int',    'internal' => 'fields'],
@@ -47,21 +47,19 @@ final class PromotionAttributeTypeMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, table:string, self?:?string, external?:?string, column?:string}>
      * @since 1.0.0
      */
-    protected static array $hasMany = [
+    public const HAS_MANY = [
         'l11n' => [
             'mapper'            => PromotionAttributeTypeL11nMapper::class,
             'table'             => 'marketing_promotion_attr_type_l11n',
             'self'              => 'marketing_promotion_attr_type_l11n_type',
             'column'            => 'title',
-            'conditional'       => true,
             'external'          => null,
         ],
         'defaults' => [
             'mapper'            => PromotionAttributeValueMapper::class,
             'table'             => 'marketing_promotion_attr_default',
             'self'              => 'marketing_promotion_attr_default_type',
-            'external'          => 'marketing_promotion_attr_default_value',
-            'conditional'       => false,
+            'external'          => 'marketing_promotion_attr_default_value'
         ],
     ];
 
@@ -71,7 +69,7 @@ final class PromotionAttributeTypeMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'marketing_promotion_attr_type';
+    public const TABLE = 'marketing_promotion_attr_type';
 
     /**
      * Primary field name.
@@ -79,5 +77,5 @@ final class PromotionAttributeTypeMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'marketing_promotion_attr_type_id';
+    public const PRIMARYFIELD ='marketing_promotion_attr_type_id';
 }
