@@ -184,15 +184,15 @@ class Promotion
      */
     public function __construct(string $name = '')
     {
-        $this->start     = new \DateTime('now');
-        $this->end       = (new \DateTime('now'))->modify('+1 month');
-        $this->calendar  = new Calendar();
+        $this->start          = new \DateTime('now');
+        $this->end            = (new \DateTime('now'))->modify('+1 month');
+        $this->calendar       = new Calendar();
         $this->actualCosts    = new Money();
         $this->actualEarnings = new Money();
         $this->budgetCosts    = new Money();
         $this->budgetEarnings = new Money();
-        $this->createdAt = new \DateTimeImmutable('now');
-        $this->createdBy = new NullAccount();
+        $this->createdAt      = new \DateTimeImmutable('now');
+        $this->createdBy      = new NullAccount();
 
         $this->name = $name;
     }

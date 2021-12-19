@@ -105,7 +105,7 @@ class PromotionAttributeType implements \JsonSerializable, ArrayableInterface
      * Set l11n
      *
      * @param string|PromotionAttributeTypeL11n $l11n Tag article l11n
-     * @param string                       $lang Language
+     * @param string                            $lang Language
      *
      * @return void
      *

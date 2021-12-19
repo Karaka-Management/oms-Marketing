@@ -33,12 +33,12 @@ final class PromotionAttributeTypeMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'marketing_promotion_attr_type_id'       => ['name' => 'marketing_promotion_attr_type_id',     'type' => 'int',    'internal' => 'id'],
-        'marketing_promotion_attr_type_name'     => ['name' => 'marketing_promotion_attr_type_name',   'type' => 'string', 'internal' => 'name', 'autocomplete' => true],
-        'marketing_promotion_attr_type_fields'   => ['name' => 'marketing_promotion_attr_type_fields', 'type' => 'int',    'internal' => 'fields'],
-        'marketing_promotion_attr_type_custom'   => ['name' => 'marketing_promotion_attr_type_custom', 'type' => 'bool', 'internal' => 'custom'],
-        'marketing_promotion_attr_type_pattern'  => ['name' => 'marketing_promotion_attr_type_pattern', 'type' => 'string', 'internal' => 'validationPattern'],
-        'marketing_promotion_attr_type_required' => ['name' => 'marketing_promotion_attr_type_required', 'type' => 'bool', 'internal' => 'isRequired'],
+        'marketing_promotion_attr_type_id'       => ['name' => 'marketing_promotion_attr_type_id',       'type' => 'int',    'internal' => 'id'],
+        'marketing_promotion_attr_type_name'     => ['name' => 'marketing_promotion_attr_type_name',     'type' => 'string', 'internal' => 'name', 'autocomplete' => true],
+        'marketing_promotion_attr_type_fields'   => ['name' => 'marketing_promotion_attr_type_fields',   'type' => 'int',    'internal' => 'fields'],
+        'marketing_promotion_attr_type_custom'   => ['name' => 'marketing_promotion_attr_type_custom',   'type' => 'bool',   'internal' => 'custom'],
+        'marketing_promotion_attr_type_pattern'  => ['name' => 'marketing_promotion_attr_type_pattern',  'type' => 'string', 'internal' => 'validationPattern'],
+        'marketing_promotion_attr_type_required' => ['name' => 'marketing_promotion_attr_type_required', 'type' => 'bool',   'internal' => 'isRequired'],
     ];
 
     /**
@@ -49,17 +49,17 @@ final class PromotionAttributeTypeMapper extends DataMapperFactory
      */
     public const HAS_MANY = [
         'l11n' => [
-            'mapper'            => PromotionAttributeTypeL11nMapper::class,
-            'table'             => 'marketing_promotion_attr_type_l11n',
-            'self'              => 'marketing_promotion_attr_type_l11n_type',
-            'column'            => 'title',
-            'external'          => null,
+            'mapper'   => PromotionAttributeTypeL11nMapper::class,
+            'table'    => 'marketing_promotion_attr_type_l11n',
+            'self'     => 'marketing_promotion_attr_type_l11n_type',
+            'column'   => 'title',
+            'external' => null,
         ],
         'defaults' => [
-            'mapper'            => PromotionAttributeValueMapper::class,
-            'table'             => 'marketing_promotion_attr_default',
-            'self'              => 'marketing_promotion_attr_default_type',
-            'external'          => 'marketing_promotion_attr_default_value'
+            'mapper'   => PromotionAttributeValueMapper::class,
+            'table'    => 'marketing_promotion_attr_default',
+            'self'     => 'marketing_promotion_attr_default_type',
+            'external' => 'marketing_promotion_attr_default_value'
         ],
     ];
 

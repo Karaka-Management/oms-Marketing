@@ -34,9 +34,9 @@ final class AccountRelationMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'marketing_promotion_accountrel_id'           => ['name' => 'marketing_promotion_accountrel_id',           'type' => 'int', 'internal' => 'id'],
-        'marketing_promotion_accountrel_promotion'         => ['name' => 'marketing_promotion_accountrel_promotion',         'type' => 'int', 'internal' => 'promotion'],
-        'marketing_promotion_accountrel_type'        => ['name' => 'marketing_promotion_accountrel_type',        'type' => 'int', 'internal' => 'type'],
+        'marketing_promotion_accountrel_id'        => ['name' => 'marketing_promotion_accountrel_id',        'type' => 'int', 'internal' => 'id'],
+        'marketing_promotion_accountrel_promotion' => ['name' => 'marketing_promotion_accountrel_promotion', 'type' => 'int', 'internal' => 'promotion'],
+        'marketing_promotion_accountrel_type'      => ['name' => 'marketing_promotion_accountrel_type',      'type' => 'int', 'internal' => 'type'],
     ];
 
     /**
@@ -47,8 +47,8 @@ final class AccountRelationMapper extends DataMapperFactory
      */
     public const OWNS_ONE = [
         'account' => [
-            'mapper'     => AccountMapper::class,
-            'external'   => 'marketing_promotion_accountrel_account',
+            'mapper'   => AccountMapper::class,
+            'external' => 'marketing_promotion_accountrel_account',
         ],
     ];
 

@@ -8,7 +8,7 @@
  * @copyright Dennis Eichhorn
  * @license   OMS License 1.0
  * @version   1.0.0
- * @link      https:   //orange-management.org
+ * @link      https://orange-management.org
  */
 declare(strict_types=1);
 
@@ -21,7 +21,7 @@ use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
  *
  * @package Modules\Marketing\Models
  * @license OMS License 1.0
- * @link    https:   //orange-management.org
+ * @link    https://orange-management.org
  * @since   1.0.0
  */
 final class PromotionAttributeValueMapper extends DataMapperFactory
@@ -33,15 +33,15 @@ final class PromotionAttributeValueMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'marketing_promotion_attr_value_id'       => ['name' => 'marketing_promotion_attr_value_id',       'type' => 'int',    'internal' => 'id'],
-        'marketing_promotion_attr_value_default'  => ['name' => 'marketing_promotion_attr_value_default',  'type' => 'bool', 'internal' => 'isDefault'],
-        'marketing_promotion_attr_value_type'     => ['name' => 'marketing_promotion_attr_value_type',     'type' => 'int',    'internal' => 'type'],
-        'marketing_promotion_attr_value_valueStr' => ['name' => 'marketing_promotion_attr_value_valueStr', 'type' => 'string', 'internal' => 'valueStr'],
-        'marketing_promotion_attr_value_valueInt' => ['name' => 'marketing_promotion_attr_value_valueInt', 'type' => 'int', 'internal' => 'valueInt'],
-        'marketing_promotion_attr_value_valueDec' => ['name' => 'marketing_promotion_attr_value_valueDec', 'type' => 'float', 'internal' => 'valueDec'],
+        'marketing_promotion_attr_value_id'       => ['name' => 'marketing_promotion_attr_value_id',       'type' => 'int',      'internal' => 'id'],
+        'marketing_promotion_attr_value_default'  => ['name' => 'marketing_promotion_attr_value_default',  'type' => 'bool',     'internal' => 'isDefault'],
+        'marketing_promotion_attr_value_type'     => ['name' => 'marketing_promotion_attr_value_type',     'type' => 'int',      'internal' => 'type'],
+        'marketing_promotion_attr_value_valueStr' => ['name' => 'marketing_promotion_attr_value_valueStr', 'type' => 'string',   'internal' => 'valueStr'],
+        'marketing_promotion_attr_value_valueInt' => ['name' => 'marketing_promotion_attr_value_valueInt', 'type' => 'int',      'internal' => 'valueInt'],
+        'marketing_promotion_attr_value_valueDec' => ['name' => 'marketing_promotion_attr_value_valueDec', 'type' => 'float',    'internal' => 'valueDec'],
         'marketing_promotion_attr_value_valueDat' => ['name' => 'marketing_promotion_attr_value_valueDat', 'type' => 'DateTime', 'internal' => 'valueDat'],
-        'marketing_promotion_attr_value_lang'     => ['name' => 'marketing_promotion_attr_value_lang',     'type' => 'string', 'internal' => 'language'],
-        'marketing_promotion_attr_value_country'  => ['name' => 'marketing_promotion_attr_value_country',  'type' => 'string', 'internal' => 'country'],
+        'marketing_promotion_attr_value_lang'     => ['name' => 'marketing_promotion_attr_value_lang',     'type' => 'string',   'internal' => 'language'],
+        'marketing_promotion_attr_value_country'  => ['name' => 'marketing_promotion_attr_value_country',  'type' => 'string',   'internal' => 'country'],
     ];
 
     /**

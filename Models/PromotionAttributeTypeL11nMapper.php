@@ -33,10 +33,10 @@ final class PromotionAttributeTypeL11nMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'marketing_promotion_attr_type_l11n_id'        => ['name' => 'marketing_promotion_attr_type_l11n_id',       'type' => 'int',    'internal' => 'id'],
-        'marketing_promotion_attr_type_l11n_title'     => ['name' => 'marketing_promotion_attr_type_l11n_title',    'type' => 'string', 'internal' => 'title', 'autocomplete' => true],
-        'marketing_promotion_attr_type_l11n_type'      => ['name' => 'marketing_promotion_attr_type_l11n_type',      'type' => 'int',    'internal' => 'type'],
-        'marketing_promotion_attr_type_l11n_lang'      => ['name' => 'marketing_promotion_attr_type_l11n_lang', 'type' => 'string', 'internal' => 'language'],
+        'marketing_promotion_attr_type_l11n_id'    => ['name' => 'marketing_promotion_attr_type_l11n_id',    'type' => 'int',    'internal' => 'id'],
+        'marketing_promotion_attr_type_l11n_title' => ['name' => 'marketing_promotion_attr_type_l11n_title', 'type' => 'string', 'internal' => 'title', 'autocomplete' => true],
+        'marketing_promotion_attr_type_l11n_type'  => ['name' => 'marketing_promotion_attr_type_l11n_type',  'type' => 'int',    'internal' => 'type'],
+        'marketing_promotion_attr_type_l11n_lang'  => ['name' => 'marketing_promotion_attr_type_l11n_lang',  'type' => 'string', 'internal' => 'language'],
     ];
 
     /**

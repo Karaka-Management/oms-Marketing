@@ -63,8 +63,8 @@ class PromotionAttributeTypeL11n implements \JsonSerializable, ArrayableInterfac
      * Constructor.
      *
      * @param int|PromotionAttributeType $type     Attribute type
-     * @param string                $title    Localized title
-     * @param string                $language Language
+     * @param string                     $title    Localized title
+     * @param string                     $language Language
      *
      * @since 1.0.0
      */

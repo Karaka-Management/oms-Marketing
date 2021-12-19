@@ -37,20 +37,20 @@ final class PromotionMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'marketing_promotion_id'            => ['name' => 'marketing_promotion_id',            'type' => 'int',          'internal' => 'id'],
-        'marketing_promotion_name'          => ['name' => 'marketing_promotion_name',          'type' => 'string',       'internal' => 'name'],
-        'marketing_promotion_description'   => ['name' => 'marketing_promotion_description',   'type' => 'string',       'internal' => 'description'],
-        'marketing_promotion_calendar'      => ['name' => 'marketing_promotion_calendar',      'type' => 'int',          'internal' => 'calendar'],
-        'marketing_promotion_budgetcosts'         => ['name' => 'marketing_promotion_budgetcosts',         'type' => 'Serializable', 'internal' => 'budgetCosts'],
-        'marketing_promotion_budgetearnings'        => ['name' => 'marketing_promotion_budgetearnings',        'type' => 'Serializable', 'internal' => 'budgetEarnings'],
-        'marketing_promotion_actualcosts'      => ['name' => 'marketing_promotion_actualcosts',      'type' => 'Serializable', 'internal' => 'actualCosts'],
-        'marketing_promotion_actualearnings'      => ['name' => 'marketing_promotion_actualearnings',      'type' => 'Serializable', 'internal' => 'actualEarnings'],
-        'marketing_promotion_start'         => ['name' => 'marketing_promotion_start',         'type' => 'DateTime',     'internal' => 'start'],
-        'marketing_promotion_end'           => ['name' => 'marketing_promotion_end',           'type' => 'DateTime',     'internal' => 'end'],
-        'marketing_promotion_progress'      => ['name' => 'marketing_promotion_progress',      'type' => 'int',          'internal' => 'progress'],
-        'marketing_promotion_progress_type' => ['name' => 'marketing_promotion_progress_type', 'type' => 'int',          'internal' => 'progressType'],
-        'marketing_promotion_created_by'    => ['name' => 'marketing_promotion_created_by',    'type' => 'int',          'internal' => 'createdBy', 'readonly' => true],
-        'marketing_promotion_created_at'    => ['name' => 'marketing_promotion_created_at',    'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
+        'marketing_promotion_id'             => ['name' => 'marketing_promotion_id',             'type' => 'int',               'internal' => 'id'],
+        'marketing_promotion_name'           => ['name' => 'marketing_promotion_name',           'type' => 'string',            'internal' => 'name'],
+        'marketing_promotion_description'    => ['name' => 'marketing_promotion_description',    'type' => 'string',            'internal' => 'description'],
+        'marketing_promotion_calendar'       => ['name' => 'marketing_promotion_calendar',       'type' => 'int',               'internal' => 'calendar'],
+        'marketing_promotion_budgetcosts'    => ['name' => 'marketing_promotion_budgetcosts',    'type' => 'Serializable',      'internal' => 'budgetCosts'],
+        'marketing_promotion_budgetearnings' => ['name' => 'marketing_promotion_budgetearnings', 'type' => 'Serializable',      'internal' => 'budgetEarnings'],
+        'marketing_promotion_actualcosts'    => ['name' => 'marketing_promotion_actualcosts',    'type' => 'Serializable',      'internal' => 'actualCosts'],
+        'marketing_promotion_actualearnings' => ['name' => 'marketing_promotion_actualearnings', 'type' => 'Serializable',      'internal' => 'actualEarnings'],
+        'marketing_promotion_start'          => ['name' => 'marketing_promotion_start',          'type' => 'DateTime',          'internal' => 'start'],
+        'marketing_promotion_end'            => ['name' => 'marketing_promotion_end',            'type' => 'DateTime',          'internal' => 'end'],
+        'marketing_promotion_progress'       => ['name' => 'marketing_promotion_progress',       'type' => 'int',               'internal' => 'progress'],
+        'marketing_promotion_progress_type'  => ['name' => 'marketing_promotion_progress_type',  'type' => 'int',               'internal' => 'progressType'],
+        'marketing_promotion_created_by'     => ['name' => 'marketing_promotion_created_by',     'type' => 'int',               'internal' => 'createdBy', 'readonly' => true],
+        'marketing_promotion_created_at'     => ['name' => 'marketing_promotion_created_at',     'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
     ];
 
     /**
@@ -73,10 +73,10 @@ final class PromotionMapper extends DataMapperFactory
             'self'     => 'marketing_promotion_media_src',
         ],
         'accountRelations' => [
-            'mapper'       => AccountRelationMapper::class,
-            'table'        => 'marketing_promotion_accountrel',
-            'self'         => 'marketing_promotion_accountrel_promotion',
-            'external'     => null,
+            'mapper'   => AccountRelationMapper::class,
+            'table'    => 'marketing_promotion_accountrel',
+            'self'     => 'marketing_promotion_accountrel_promotion',
+            'external' => null,
         ],
         'attributes' => [
             'mapper'      => PromotionAttributeMapper::class,
@@ -95,8 +95,8 @@ final class PromotionMapper extends DataMapperFactory
      */
     public const OWNS_ONE = [
         'calendar' => [
-            'mapper'     => CalendarMapper::class,
-            'external'   => 'marketing_promotion_calendar',
+            'mapper'   => CalendarMapper::class,
+            'external' => 'marketing_promotion_calendar',
         ],
     ];
 
@@ -108,8 +108,8 @@ final class PromotionMapper extends DataMapperFactory
      */
     public const BELONGS_TO = [
         'createdBy' => [
-            'mapper'     => AccountMapper::class,
-            'external'   => 'marketing_promotion_created_by',
+            'mapper'   => AccountMapper::class,
+            'external' => 'marketing_promotion_created_by',
         ],
     ];
 

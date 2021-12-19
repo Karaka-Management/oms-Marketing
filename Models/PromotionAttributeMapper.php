@@ -33,10 +33,10 @@ final class PromotionAttributeMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'marketing_promotion_attr_id'    => ['name' => 'marketing_promotion_attr_id',    'type' => 'int', 'internal' => 'id'],
-        'marketing_promotion_attr_promotion'  => ['name' => 'marketing_promotion_attr_promotion',  'type' => 'int', 'internal' => 'promotion'],
-        'marketing_promotion_attr_type'  => ['name' => 'marketing_promotion_attr_type',  'type' => 'int', 'internal' => 'type'],
-        'marketing_promotion_attr_value' => ['name' => 'marketing_promotion_attr_value', 'type' => 'int', 'internal' => 'value'],
+        'marketing_promotion_attr_id'        => ['name' => 'marketing_promotion_attr_id',        'type' => 'int', 'internal' => 'id'],
+        'marketing_promotion_attr_promotion' => ['name' => 'marketing_promotion_attr_promotion', 'type' => 'int', 'internal' => 'promotion'],
+        'marketing_promotion_attr_type'      => ['name' => 'marketing_promotion_attr_type',      'type' => 'int', 'internal' => 'type'],
+        'marketing_promotion_attr_value'     => ['name' => 'marketing_promotion_attr_value',     'type' => 'int', 'internal' => 'value'],
     ];
 
     /**
@@ -47,12 +47,12 @@ final class PromotionAttributeMapper extends DataMapperFactory
      */
     public const OWNS_ONE = [
         'type' => [
-            'mapper'            => PromotionAttributeTypeMapper::class,
-            'external'          => 'marketing_promotion_attr_type',
+            'mapper'   => PromotionAttributeTypeMapper::class,
+            'external' => 'marketing_promotion_attr_type',
         ],
         'value' => [
-            'mapper'            => PromotionAttributeValueMapper::class,
-            'external'          => 'marketing_promotion_attr_value',
+            'mapper'   => PromotionAttributeValueMapper::class,
+            'external' => 'marketing_promotion_attr_value',
         ],
     ];
 
