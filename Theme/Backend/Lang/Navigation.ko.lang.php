@@ -13,9 +13,9 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'Analysis'   => 'Analysis',
-    'Create'     => 'Create',
-    'Events'     => 'Events',
-    'Marketing'  => 'Marketing',
-    'Promotions' => 'Promotions',
+    'Analysis'   => '분석',
+    'Create'     => '만들다',
+    'Events'     => '이벤트',
+    'Marketing'  => '마케팅',
+    'Promotions' => '프로모션',
 ]];

@@ -13,9 +13,9 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'Analysis'   => 'Analysis',
-    'Create'     => 'Create',
-    'Events'     => 'Events',
-    'Marketing'  => 'Marketing',
+    'Analysis'   => 'Analyse',
+    'Create'     => 'Créer',
+    'Events'     => 'Événements',
+    'Marketing'  => 'Commercialisation',
     'Promotions' => 'Promotions',
 ]];

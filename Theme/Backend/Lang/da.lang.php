@@ -25,10 +25,10 @@ return ['Marketing' => [
     'Location'    => 'Beliggenhed',
     'Name'        => 'Navn',
     'Promotion'   => 'Forfremmelse',
-    'Promotions'  => 'Kampagner',
-    'Sales'       => 'Salg',
+    'Promotions'  => 'Kampagner.',
+    'Sales'       => 'SALG',
     'Start'       => 'Start',
-    'Status'      => 'status',
+    'Status'      => 'Status.',
     'Title'       => 'Titel',
     'Type'        => 'Type',
 ]];

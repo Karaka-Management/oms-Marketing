@@ -14,10 +14,10 @@ declare(strict_types=1);
 
 return ['Marketing' => [
     'Actual'      => 'Todellinen',
-    'Budget'      => 'talousarvio',
+    'Budget'      => 'Budjetti',
     'Description' => 'Kuvaus',
-    'Due'         => 'maksettava',
-    'End'         => 'pää',
+    'Due'         => 'Takia',
+    'End'         => 'Loppu',
     'Event'       => 'Tapahtuma',
     'Events'      => 'Tapahtumat',
     'Expenses'    => 'Kulut',
@@ -25,10 +25,10 @@ return ['Marketing' => [
     'Location'    => 'Sijainti',
     'Name'        => 'Nimi',
     'Promotion'   => 'Edistäminen',
-    'Promotions'  => 'tarjouksia',
+    'Promotions'  => 'Kampanjat',
     'Sales'       => 'Myynti',
     'Start'       => 'alkaa',
     'Status'      => 'Tila',
-    'Title'       => 'otsikko',
+    'Title'       => 'Otsikko',
     'Type'        => 'Tyyppi',
 ]];

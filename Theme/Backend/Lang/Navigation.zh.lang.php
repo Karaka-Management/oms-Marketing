@@ -13,9 +13,9 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'Analysis'   => 'Analysis',
-    'Create'     => 'Create',
-    'Events'     => 'Events',
-    'Marketing'  => 'Marketing',
-    'Promotions' => 'Promotions',
+    'Analysis'   => '分析',
+    'Create'     => '创建',
+    'Events'     => '事件',
+    'Marketing'  => '营销',
+    'Promotions' => '促销',
 ]];
