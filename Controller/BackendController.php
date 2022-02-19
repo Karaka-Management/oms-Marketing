@@ -29,7 +29,7 @@ use phpOMS\Views\View;
  * @link    https://karaka.app
  * @since   1.0.0
  *
- * @todo Orange-Management/Modules#102
+ * @todo Karaka/Modules#102
  *  Goal definition
  *  While costs are universal the goal for promotions, events etc. is not.
  *  In some cases it could be sales in others it could be response rate etc.
