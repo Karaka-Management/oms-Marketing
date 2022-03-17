@@ -13,7 +13,7 @@
 declare(strict_types=1);
 
 use Modules\Marketing\Controller\BackendController;
-use Modules\Marketing\Models\PermissionState;
+use Modules\Marketing\Models\PermissionCategory;
 use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
@@ -25,7 +25,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
-                'state'  => PermissionState::PROMOTION,
+                'state'  => PermissionCategory::PROMOTION,
             ],
         ],
     ],
@@ -36,7 +36,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
-                'state'  => PermissionState::PROMOTION,
+                'state'  => PermissionCategory::PROMOTION,
             ],
         ],
     ],
@@ -47,7 +47,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
-                'state'  => PermissionState::PROMOTION,
+                'state'  => PermissionCategory::PROMOTION,
             ],
         ],
     ],
@@ -58,7 +58,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
-                'state'  => PermissionState::EVENT,
+                'state'  => PermissionCategory::EVENT,
             ],
         ],
     ],
@@ -69,7 +69,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
-                'state'  => PermissionState::EVENT,
+                'state'  => PermissionCategory::EVENT,
             ],
         ],
     ],
@@ -80,7 +80,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
-                'state'  => PermissionState::EVENT,
+                'state'  => PermissionCategory::EVENT,
             ],
         ],
     ],
