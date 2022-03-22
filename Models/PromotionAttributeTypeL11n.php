@@ -129,7 +129,7 @@ class PromotionAttributeTypeL11n implements \JsonSerializable, ArrayableInterfac
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize() : mixed
     {
         return $this->toArray();
     }
