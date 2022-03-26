@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Modules\Marketing\Models;
 
-use phpOMS\Contract\ArrayableInterface;
 
 /**
  * Promotion class.
@@ -24,7 +23,7 @@ use phpOMS\Contract\ArrayableInterface;
  * @link    https://karaka.app
  * @since   1.0.0
  */
-class PromotionAttribute implements \JsonSerializable, ArrayableInterface
+class PromotionAttribute implements \JsonSerializable
 {
     /**
      * Id.
