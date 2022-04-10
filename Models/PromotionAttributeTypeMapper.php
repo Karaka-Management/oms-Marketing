@@ -59,7 +59,7 @@ final class PromotionAttributeTypeMapper extends DataMapperFactory
             'mapper'   => PromotionAttributeValueMapper::class,
             'table'    => 'marketing_promotion_attr_default',
             'self'     => 'marketing_promotion_attr_default_type',
-            'external' => 'marketing_promotion_attr_default_value'
+            'external' => 'marketing_promotion_attr_default_value',
         ],
     ];
 

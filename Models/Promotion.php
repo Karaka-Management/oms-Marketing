@@ -79,7 +79,7 @@ class Promotion
      */
     public Calendar $calendar;
 
-     /**
+    /**
      * Budget costs.
      *
      * @var Money
@@ -379,21 +379,21 @@ class Promotion
     public function toArray() : array
     {
         return [
-            'id'           => $this->id,
-            'start'        => $this->start,
-            'end'          => $this->end,
-            'name'         => $this->name,
-            'description'  => $this->description,
-            'calendar'     => $this->calendar,
+            'id'                   => $this->id,
+            'start'                => $this->start,
+            'end'                  => $this->end,
+            'name'                 => $this->name,
+            'description'          => $this->description,
+            'calendar'             => $this->calendar,
             'budgetCosts'          => $this->budgetCosts,
             'budgetEarnings'       => $this->budgetEarnings,
             'actualCosts'          => $this->actualCosts,
             'actualEarnings'       => $this->actualEarnings,
-            'tasks'        => $this->tasks,
-            'media'        => $this->media,
-            'progress'     => $this->progress,
-            'progressType' => $this->progressType,
-            'createdAt'    => $this->createdAt,
+            'tasks'                => $this->tasks,
+            'media'                => $this->media,
+            'progress'             => $this->progress,
+            'progressType'         => $this->progressType,
+            'createdAt'            => $this->createdAt,
         ];
     }
 

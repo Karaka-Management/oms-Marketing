@@ -45,10 +45,10 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $money = new Money();
         $money->setString('1.23');
 
-        $promotion->budgetCosts    = $money;
+        $promotion->budgetCosts      = $money;
         $promotion->budgetEarnings   = $money;
-        $promotion->actualCosts = $money;
-        $promotion->actualEarnings = $money;
+        $promotion->actualCosts      = $money;
+        $promotion->actualEarnings   = $money;
 
         $task        = new Task();
         $task->title = 'EventTask 1';
