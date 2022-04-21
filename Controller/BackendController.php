@@ -49,7 +49,7 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewMarketingPromotionList(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    public function viewMarketingPromotionList(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/Marketing/Theme/Backend/promotion-list');
@@ -73,7 +73,7 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewMarketingPromotionProfile(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    public function viewMarketingPromotionProfile(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : RenderableInterface
     {
         /** @var \phpOMS\Model\Html\Head $head */
         $head = $response->get('Content')->getData('head');
@@ -113,7 +113,7 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewMarketingPromotionCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    public function viewMarketingPromotionCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/Marketing/Theme/Backend/promotion-create');
@@ -134,7 +134,7 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewMarketingEventList(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    public function viewMarketingEventList(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/Marketing/Theme/Backend/event-list');
@@ -155,7 +155,7 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewMarketingEventCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    public function viewMarketingEventCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/Marketing/Theme/Backend/event-create');
