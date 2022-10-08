@@ -35,7 +35,7 @@ echo $this->getData('nav')->render(); ?>
                         <tr><td colspan="2"><textarea id="iDescription" name="desc"><?= $this->printHtml($promotion->description); ?></textarea>
                         <tr><td><label for="iBudget"><?= $this->getHtml('Budget'); ?></label><td><label for="iActual"><?= $this->getHtml('Actual'); ?></label>
                         <tr><td><input type="text" id="iBudget" name="budget" placeholder=""><td><input type="text" id="iActual" name="actual">
-                        <tr><td colspan="2"><input type="submit" value="<?= $this->getHtml('Save', '0', '0'); ?>">
+                        <tr><td colspan="2"><input type="submit" value="<?= $this->getHtml('Save', '0', '0'); ?>" name="save-promotion">
                     </table>
                 </form>
             </div>
