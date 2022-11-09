@@ -35,4 +35,12 @@ final class NullPromotionAttributeValue extends PromotionAttributeValue
     {
         $this->id = $id;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize() : mixed
+    {
+        return ['id' => $this->id];
+    }
 }
