@@ -374,6 +374,20 @@ class Promotion
     }
 
     /**
+     * Get relations to the promotions.
+     *
+     * This includes customers, partners, ...
+     *
+     * @return array
+     *
+     * @since 1.0.0
+     */
+    public function getRelations() : array
+    {
+        return $this->accountRelations;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function toArray() : array
