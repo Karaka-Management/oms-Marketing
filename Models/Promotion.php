@@ -17,10 +17,10 @@ namespace Modules\Marketing\Models;
 use Modules\Admin\Models\Account;
 use Modules\Admin\Models\NullAccount;
 use Modules\Calendar\Models\Calendar;
+use Modules\Media\Models\Media;
 use Modules\Tasks\Models\NullTask;
 use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
-use Modules\Media\Models\Media;
 
 /**
  * Promotion class.
