@@ -20,6 +20,7 @@ use Modules\Calendar\Models\Calendar;
 use Modules\Tasks\Models\NullTask;
 use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
+use Modules\Media\Models\Media;
 
 /**
  * Promotion class.
@@ -224,13 +225,13 @@ class Promotion
     /**
      * Add media file.
      *
-     * @param mixed $media Media
+     * @param Media $media Media
      *
      * @return void
      *
      * @since 1.0.0
      */
-    public function addMedia($media) : void
+    public function addMedia(Media $media) : void
     {
         $this->media[] = $media;
     }
