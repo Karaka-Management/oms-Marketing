@@ -52,7 +52,7 @@ final class PromotionAttributeTypeMapper extends DataMapperFactory
             'mapper'   => PromotionAttributeTypeL11nMapper::class,
             'table'    => 'marketing_promotion_attr_type_l11n',
             'self'     => 'marketing_promotion_attr_type_l11n_type',
-            'column'   => 'title',
+            'column'   => 'content',
             'external' => null,
         ],
         'defaults' => [

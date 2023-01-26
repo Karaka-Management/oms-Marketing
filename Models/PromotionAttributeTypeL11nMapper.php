@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Modules\Marketing\Models;
 
 use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
+use phpOMS\Localization\BaseStringL11n;
 
 /**
  * Promotion mapper class.
@@ -34,8 +35,8 @@ final class PromotionAttributeTypeL11nMapper extends DataMapperFactory
      */
     public const COLUMNS = [
         'marketing_promotion_attr_type_l11n_id'    => ['name' => 'marketing_promotion_attr_type_l11n_id',    'type' => 'int',    'internal' => 'id'],
-        'marketing_promotion_attr_type_l11n_title' => ['name' => 'marketing_promotion_attr_type_l11n_title', 'type' => 'string', 'internal' => 'title', 'autocomplete' => true],
-        'marketing_promotion_attr_type_l11n_type'  => ['name' => 'marketing_promotion_attr_type_l11n_type',  'type' => 'int',    'internal' => 'type'],
+        'marketing_promotion_attr_type_l11n_title' => ['name' => 'marketing_promotion_attr_type_l11n_title', 'type' => 'string', 'internal' => 'content', 'autocomplete' => true],
+        'marketing_promotion_attr_type_l11n_type'  => ['name' => 'marketing_promotion_attr_type_l11n_type',  'type' => 'int',    'internal' => 'ref'],
         'marketing_promotion_attr_type_l11n_lang'  => ['name' => 'marketing_promotion_attr_type_l11n_lang',  'type' => 'string', 'internal' => 'language'],
     ];
 
@@ -54,4 +55,12 @@ final class PromotionAttributeTypeL11nMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const PRIMARYFIELD ='marketing_promotion_attr_type_l11n_id';
+
+    /**
+     * Model to use by the mapper.
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    public const MODEL = BaseStringL11n::class;
 }
