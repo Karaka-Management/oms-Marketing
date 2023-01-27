@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\Marketing\Models;
 
+use phpOMS\Localization\BaseStringL11n;
 use phpOMS\Localization\ISO639x1Enum;
 
 /**
@@ -65,9 +66,9 @@ class PromotionAttributeType implements \JsonSerializable
     /**
      * Localization
      *
-     * @var PromotionAttributeTypeL11n
+     * @var BaseStringL11n
      */
-    private string | PromotionAttributeTypeL11n $l11n;
+    private string | BaseStringL11n $l11n;
 
     /**
      * Possible default attribute values
@@ -103,22 +104,23 @@ class PromotionAttributeType implements \JsonSerializable
     /**
      * Set l11n
      *
-     * @param string|PromotionAttributeTypeL11n $l11n Tag article l11n
-     * @param string                            $lang Language
+     * @param string|BaseStringL11n $l11n Tag article l11n
+     * @param string                $lang Language
      *
      * @return void
      *
      * @since 1.0.0
      */
-    public function setL11n(string | PromotionAttributeTypeL11n $l11n, string $lang = ISO639x1Enum::_EN) : void
+    public function setL11n(string | BaseStringL11n $l11n, string $lang = ISO639x1Enum::_EN) : void
     {
-        if ($l11n instanceof PromotionAttributeTypeL11n) {
+        if ($l11n instanceof BaseStringL11n) {
             $this->l11n = $l11n;
-        } elseif (isset($this->l11n) && $this->l11n instanceof PromotionAttributeTypeL11n) {
-            $this->l11n->title = $l11n;
+        } elseif (isset($this->l11n) && $this->l11n instanceof BaseStringL11n) {
+            $this->l11n->content  = $l11n;
+            $this->l11n->setLanguage($lang);
         } else {
-            $this->l11n        = new PromotionAttributeTypeL11n();
-            $this->l11n->title = $l11n;
+            $this->l11n          = new BaseStringL11n();
+            $this->l11n->content = $l11n;
             $this->l11n->setLanguage($lang);
         }
     }
@@ -130,7 +132,11 @@ class PromotionAttributeType implements \JsonSerializable
      */
     public function getL11n() : string
     {
-        return $this->l11n instanceof PromotionAttributeTypeL11n ? $this->l11n->title : $this->l11n;
+        if (!isset($this->l11n)) {
+            return '';
+        }
+
+        return $this->l11n instanceof BaseStringL11n ? $this->l11n->content : $this->l11n;
     }
 
     /**

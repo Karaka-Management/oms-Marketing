@@ -249,11 +249,6 @@
                 "type": "TINYINT(1)",
                 "null": false
             },
-            "marketing_promotion_attr_value_type": {
-                "name": "marketing_promotion_attr_value_type",
-                "type": "INT(11)",
-                "null": false
-            },
             "marketing_promotion_attr_value_valueStr": {
                 "name": "marketing_promotion_attr_value_valueStr",
                 "type": "VARCHAR(255)",
