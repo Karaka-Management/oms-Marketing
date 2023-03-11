@@ -73,5 +73,5 @@ final class PromotionAttributeValueMapper extends DataMapperFactory
      * @var string
      * @since 1.0.0
      */
-    public const PRIMARYFIELD ='marketing_promotion_attr_value_id';
+    public const PRIMARYFIELD = 'marketing_promotion_attr_value_id';
 }
