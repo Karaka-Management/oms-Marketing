@@ -6,7 +6,7 @@
  *
  * @package   Modules\Marketing
  * @copyright Dennis Eichhorn
- * @license   OMS License 1.0
+ * @license   OMS License 2.0
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -25,15 +25,9 @@ use phpOMS\Views\View;
  * Marketing controller class.
  *
  * @package Modules\Marketing
- * @license OMS License 1.0
+ * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
- *
- * @todo Karaka/Modules#102
- *  Goal definition
- *  While costs are universal the goal for promotions, events etc. is not.
- *  In some cases it could be sales in others it could be response rate etc.
- *  Implement a way to define goals and allow manual+system side evaluation.
  */
 final class BackendController extends Controller
 {
