@@ -18,7 +18,7 @@ use Modules\Marketing\Models\ProgressType;
 use Modules\Marketing\Models\Promotion;
 use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
-use phpOMS\Localization\Money;
+use phpOMS\Stdlib\Base\FloatInt;
 
 /**
  * @internal
@@ -41,7 +41,7 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
      */
     public function testDefault() : void
     {
-        self::assertEquals(0, $this->promotion->getId());
+        self::assertEquals(0, $this->promotion->id);
         self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $this->promotion->calendar);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->promotion->start->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $this->promotion->end->format('Y-m-d'));
@@ -130,10 +130,10 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
                 'end'                  => $this->promotion->end,
                 'name'                 => 'Name',
                 'description'          => 'Description',
-                'budgetCosts'          => new Money(),
-                'budgetEarnings'       => new Money(),
-                'actualCosts'          => new Money(),
-                'actualEarnings'       => new Money(),
+                'budgetCosts'          => new FloatInt(),
+                'budgetEarnings'       => new FloatInt(),
+                'actualCosts'          => new FloatInt(),
+                'actualEarnings'       => new FloatInt(),
                 'tasks'                => [],
                 'media'                => [],
                 'progress'             => 10,

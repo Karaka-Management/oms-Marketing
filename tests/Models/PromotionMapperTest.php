@@ -21,7 +21,7 @@ use Modules\Marketing\Models\PromotionMapper;
 use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
 use phpOMS\DataStorage\Database\Query\OrderType;
-use phpOMS\Localization\Money;
+use phpOMS\Stdlib\Base\FloatInt;
 
 /**
  * @internal
@@ -42,7 +42,7 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $promotion->start       = new \DateTime('2000-05-05');
         $promotion->end         = new \DateTime('2005-05-05');
 
-        $money = new Money();
+        $money = new FloatInt();
         $money->setString('1.23');
 
         $promotion->budgetCosts      = $money;
@@ -74,13 +74,13 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $promotion->addMedia($media);
 
         $id = PromotionMapper::create()->execute($promotion);
-        self::assertGreaterThan(0, $promotion->getId());
-        self::assertEquals($id, $promotion->getId());
+        self::assertGreaterThan(0, $promotion->id);
+        self::assertEquals($id, $promotion->id);
 
         $promotionR = PromotionMapper::get()
             ->with('tasks')
             ->with('media')
-            ->where('id', $promotion->getId())->execute();
+            ->where('id', $promotion->id)->execute();
 
         self::assertEquals($promotion->name, $promotionR->name);
         self::assertEquals($promotion->description, $promotionR->description);
