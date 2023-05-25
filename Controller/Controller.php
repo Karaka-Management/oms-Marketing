@@ -59,7 +59,7 @@ class Controller extends ModuleAbstract
     public const ID = 1001900000;
 
     /**
-     * Providing.
+     * List of modules this module provides for.
      *
      * @var string[]
      * @since 1.0.0
@@ -67,7 +67,7 @@ class Controller extends ModuleAbstract
     protected static array $providing = [];
 
     /**
-     * Dependencies.
+     * List of modules this module depends on.
      *
      * @var string[]
      * @since 1.0.0
