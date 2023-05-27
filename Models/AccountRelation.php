@@ -35,37 +35,37 @@ class AccountRelation
      */
     public int $id = 0;
 
-	/**
-	 * The ID of the promotion associated with this account relation.
-	 *
-	 * @var int
-	 * @since 1.0.0
-	 */
-	public int $promotion = 0;
+    /**
+     * The ID of the promotion associated with this account relation.
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    public int $promotion = 0;
 
-	/**
-	 * The account associated with this account relation.
-	 *
-	 * @var Account
-	 * @since 1.0.0
-	 */
-	public Account $account;
+    /**
+     * The account associated with this account relation.
+     *
+     * @var Account
+     * @since 1.0.0
+     */
+    public Account $account;
 
-	/**
-	 * The type of this account relation.
-	 *
-	 * @var int
-	 * @since 1.0.0
-	 */
-	public int $type = AccountRelationType::CUSTOMER;
+    /**
+     * The type of this account relation.
+     *
+     * @var int
+     * @since 1.0.0
+     */
+    public int $type = AccountRelationType::CUSTOMER;
 
-	/**
+    /**
      * Constructor.
      *
      * @since 1.0.0
-	 */
-	public function __construct()
-	{
-		$this->account = new NullAccount();
-	}
+     */
+    public function __construct()
+    {
+        $this->account = new NullAccount();
+    }
 }
