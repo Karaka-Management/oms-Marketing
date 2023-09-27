@@ -107,6 +107,46 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
+    public function viewMarketingEventProfile(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : RenderableInterface
+    {
+        /** @var \phpOMS\Model\Html\Head $head */
+        $head = $response->data['Content']->head;
+        $head->addAsset(AssetType::CSS, '/Modules/Calendar/Theme/Backend/css/styles.css?v=1.0.0');
+
+        $view = new View($this->app->l11nManager, $request, $response);
+        $view->setTemplate('/Modules/Marketing/Theme/Backend/promotion-profile');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1001902001, $request, $response);
+
+        $taskListView = new \Modules\Tasks\Theme\Backend\Components\Tasks\ListView($this->app->l11nManager, $request, $response);
+        $taskListView->setTemplate('/Modules/Tasks/Theme/Backend/Components/Tasks/list');
+        $view->data['tasklist'] = $taskListView;
+
+        $calendarView = new \Modules\Calendar\Theme\Backend\Components\Calendar\BaseView($this->app->l11nManager, $request, $response);
+        $calendarView->setTemplate('/Modules/Calendar/Theme/Backend/Components/Calendar/mini');
+        $view->data['calendar'] = $calendarView;
+
+        $mediaListView = new \Modules\Media\Views\MediaView($this->app->l11nManager, $request, $response);
+        $mediaListView->setTemplate('/Modules/Media/Theme/Backend/Components/Media/list');
+        $view->data['medialist'] = $mediaListView;
+
+        $promotion               = PromotionMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $view->data['promotion'] = $promotion;
+
+        return $view;
+    }
+
+    /**
+     * Routing end-point for application behaviour.
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param mixed            $data     Generic data
+     *
+     * @return RenderableInterface
+     *
+     * @since 1.0.0
+     * @codeCoverageIgnore
+     */
     public function viewMarketingPromotionCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
