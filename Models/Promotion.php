@@ -118,7 +118,7 @@ class Promotion
      * @var Task[]
      * @since 1.0.0
      */
-    private array $tasks = [];
+    public array $tasks = [];
 
     /**
      * Media.
@@ -126,7 +126,7 @@ class Promotion
      * @var \Modules\Media\Models\Media[]
      * @since 1.0.0
      */
-    private array $media = [];
+    public array $media = [];
 
     /**
      * Progress (0-100).
@@ -166,7 +166,7 @@ class Promotion
      * @var AccountRelation[]
      * @since 1.0.0
      */
-    private array $accountRelations = [];
+    public array $accountRelations = [];
 
     /**
      * Attributes.
@@ -174,7 +174,7 @@ class Promotion
      * @var int[]|PromotionAttribute[]
      * @since 1.0.0
      */
-    private array $attributes = [];
+    public array $attributes = [];
 
     /**
      * Constructor.

@@ -106,7 +106,7 @@ class PromotionAttributeValue implements \JsonSerializable
      *
      * @var null|BaseStringL11n
      */
-    private ?BaseStringL11n $l11n = null;
+    public ?BaseStringL11n $l11n = null;
 
     /**
      * Set value
