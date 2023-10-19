@@ -7,7 +7,7 @@
         "name": "Marketing",
         "uri": "{/base}/marketing/dashboard?{?}",
         "target": "self",
-        "icon": "fa fa-paint-brush",
+        "icon": "brush",
         "order": 60,
         "from": "Marketing",
         "permission": { "permission": 2, "category": null, "element": null },
