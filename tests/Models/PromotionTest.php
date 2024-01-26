@@ -16,8 +16,6 @@ namespace Modules\Marketing\tests\Models;
 
 use Modules\Marketing\Models\ProgressType;
 use Modules\Marketing\Models\Promotion;
-use Modules\Media\Models\Media;
-use Modules\Tasks\Models\Task;
 use phpOMS\Stdlib\Base\FloatInt;
 
 /**
@@ -49,41 +47,10 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(0, $this->promotion->budgetEarnings->getInt());
         self::assertEquals(0, $this->promotion->actualCosts->getInt());
         self::assertEquals(0, $this->promotion->actualEarnings->getInt());
-        self::assertFalse($this->promotion->removeTask(2));
-        self::assertEmpty($this->promotion->getTasks());
-        self::assertEmpty($this->promotion->getMedia());
-        self::assertInstanceOf('\Modules\Tasks\Models\NullTask', $this->promotion->getTask(1));
+        self::assertEmpty($this->promotion->tasks);
+        self::assertEmpty($this->promotion->files);
         self::assertEquals(0, $this->promotion->progress);
         self::assertEquals(ProgressType::MANUAL, $this->promotion->getProgressType());
-    }
-
-    /**
-     * @covers Modules\Marketing\Models\Promotion
-     * @group module
-     */
-    public function testMediaInputOutput() : void
-    {
-        $this->promotion->addMedia(new Media());
-        self::assertCount(1, $this->promotion->getMedia());
-    }
-
-    /**
-     * @covers Modules\Marketing\Models\Promotion
-     * @group module
-     */
-    public function testTaskInputOutput() : void
-    {
-        $task        = new Task();
-        $task->title = 'A';
-
-        $this->promotion->addTask($task);
-        self::assertEquals('A', $this->promotion->getTask(0)->title);
-
-        self::assertTrue($this->promotion->removeTask(0));
-        self::assertEquals(0, $this->promotion->countTasks());
-
-        $this->promotion->addTask($task);
-        self::assertCount(1, $this->promotion->getTasks());
     }
 
     /**
@@ -125,19 +92,19 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             [
-                'id'                   => 0,
-                'start'                => $this->promotion->start,
-                'end'                  => $this->promotion->end,
-                'name'                 => 'Name',
-                'description'          => 'Description',
-                'budgetCosts'          => new FloatInt(),
-                'budgetEarnings'       => new FloatInt(),
-                'actualCosts'          => new FloatInt(),
-                'actualEarnings'       => new FloatInt(),
-                'tasks'                => [],
-                'media'                => [],
-                'progress'             => 10,
-                'progressType'         => ProgressType::TASKS,
+                'id'             => 0,
+                'start'          => $this->promotion->start,
+                'end'            => $this->promotion->end,
+                'name'           => 'Name',
+                'description'    => 'Description',
+                'budgetCosts'    => new FloatInt(),
+                'budgetEarnings' => new FloatInt(),
+                'actualCosts'    => new FloatInt(),
+                'actualEarnings' => new FloatInt(),
+                'tasks'          => [],
+                'media'          => [],
+                'progress'       => 10,
+                'progressType'   => ProgressType::TASKS,
             ],
             $serialized
         );

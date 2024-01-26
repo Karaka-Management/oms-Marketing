@@ -17,8 +17,6 @@ namespace Modules\Marketing\Models;
 use Modules\Admin\Models\Account;
 use Modules\Admin\Models\NullAccount;
 use Modules\Calendar\Models\Calendar;
-use Modules\Media\Models\Media;
-use Modules\Tasks\Models\NullTask;
 use Modules\Tasks\Models\Task;
 use phpOMS\Stdlib\Base\FloatInt;
 
@@ -121,14 +119,6 @@ class Promotion
     public array $tasks = [];
 
     /**
-     * Media.
-     *
-     * @var \Modules\Media\Models\Media[]
-     * @since 1.0.0
-     */
-    public array $media = [];
-
-    /**
      * Progress (0-100).
      *
      * @var int
@@ -169,14 +159,6 @@ class Promotion
     public array $accountRelations = [];
 
     /**
-     * Attributes.
-     *
-     * @var int[]|PromotionAttribute[]
-     * @since 1.0.0
-     */
-    public array $attributes = [];
-
-    /**
      * Constructor.
      *
      * @param string $name Event name/title
@@ -196,44 +178,6 @@ class Promotion
         $this->createdBy      = new NullAccount();
 
         $this->name = $name;
-    }
-
-    /**
-     * Get id.
-     *
-     * @return int Model id
-     *
-     * @since 1.0.0
-     */
-    public function getId() : int
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get media files.
-     *
-     * @return array
-     *
-     * @since 1.0.0
-     */
-    public function getMedia() : array
-    {
-        return $this->media;
-    }
-
-    /**
-     * Add media file.
-     *
-     * @param Media $media Media
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function addMedia(Media $media) : void
-    {
-        $this->media[] = $media;
     }
 
     /**
@@ -263,78 +207,6 @@ class Promotion
     }
 
     /**
-     * Add task.
-     *
-     * @param Task $task Task
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function addTask(Task $task) : void
-    {
-        $this->tasks[] = $task;
-    }
-
-    /**
-     * Remove task
-     *
-     * @param int $id id to remove
-     *
-     * @return bool
-     *
-     * @since 1.0.0
-     */
-    public function removeTask(int $id) : bool
-    {
-        if (isset($this->tasks[$id])) {
-            unset($this->tasks[$id]);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Get task by id.
-     *
-     * @param int $id Task id
-     *
-     * @return Task
-     *
-     * @since 1.0.0
-     */
-    public function getTask(int $id) : Task
-    {
-        return $this->tasks[$id] ?? new NullTask();
-    }
-
-    /**
-     * Get tasks.
-     *
-     * @return array
-     *
-     * @since 1.0.0
-     */
-    public function getTasks() : array
-    {
-        return $this->tasks;
-    }
-
-    /**
-     * Count tasks.
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function countTasks() : int
-    {
-        return \count($this->tasks);
-    }
-
-    /**
      * Add account relation
      *
      * @param AccountRelation $accRel Account relation
@@ -346,32 +218,6 @@ class Promotion
     public function addAccount(AccountRelation $accRel) : void
     {
         $this->accountRelations[] = $accRel;
-    }
-
-    /**
-     * Add attribute to item
-     *
-     * @param PromotionAttribute $attribute Note
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function addAttribute(PromotionAttribute $attribute) : void
-    {
-        $this->attributes[] = $attribute;
-    }
-
-    /**
-     * Get attributes
-     *
-     * @return int[]|PromotionAttribute[]
-     *
-     * @since 1.0.0
-     */
-    public function getAttributes() : array
-    {
-        return $this->attributes;
     }
 
     /**
@@ -394,21 +240,21 @@ class Promotion
     public function toArray() : array
     {
         return [
-            'id'                   => $this->id,
-            'start'                => $this->start,
-            'end'                  => $this->end,
-            'name'                 => $this->name,
-            'description'          => $this->description,
-            'calendar'             => $this->calendar,
-            'budgetCosts'          => $this->budgetCosts,
-            'budgetEarnings'       => $this->budgetEarnings,
-            'actualCosts'          => $this->actualCosts,
-            'actualEarnings'       => $this->actualEarnings,
-            'tasks'                => $this->tasks,
-            'media'                => $this->media,
-            'progress'             => $this->progress,
-            'progressType'         => $this->progressType,
-            'createdAt'            => $this->createdAt,
+            'id'             => $this->id,
+            'start'          => $this->start,
+            'end'            => $this->end,
+            'name'           => $this->name,
+            'description'    => $this->description,
+            'calendar'       => $this->calendar,
+            'budgetCosts'    => $this->budgetCosts,
+            'budgetEarnings' => $this->budgetEarnings,
+            'actualCosts'    => $this->actualCosts,
+            'actualEarnings' => $this->actualEarnings,
+            'tasks'          => $this->tasks,
+            'media'          => $this->files,
+            'progress'       => $this->progress,
+            'progressType'   => $this->progressType,
+            'createdAt'      => $this->createdAt,
         ];
     }
 
@@ -419,4 +265,7 @@ class Promotion
     {
         return $this->toArray();
     }
+
+    use \Modules\Media\Models\MediaListTrait;
+    use \Modules\Attribute\Models\AttributeHolderTrait;
 }

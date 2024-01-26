@@ -13,7 +13,6 @@
 declare(strict_types=1);
 
 $promotion = $this->data['promotion'];
-$tasks     = $promotion->getTasks();
 
 echo $this->data['nav']->render(); ?>
 
@@ -44,7 +43,7 @@ echo $this->data['nav']->render(); ?>
 
     <div class="col-xs-12 col-md-6">
         <div class="box wf-100">
-            <?= $this->getData('tasklist')->render($promotion->getTasks()); ?>
+            <?= $this->getData('tasklist')->render($promotion->tasks); ?>
         </div>
     </div>
 </div>
@@ -55,7 +54,7 @@ echo $this->data['nav']->render(); ?>
     </div>
 
     <div class="col-xs-12 col-md-6">
-        <?= $this->getData('medialist')->render($promotion->getMedia()); ?>
+        <?= $this->getData('medialist')->render($promotion->files); ?>
     </div>
 </div>
 

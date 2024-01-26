@@ -69,7 +69,7 @@ final class PromotionMapper extends DataMapperFactory
             'external' => 'marketing_promotion_task_relation_src',
             'self'     => 'marketing_promotion_task_relation_dst',
         ],
-        'media' => [
+        'files' => [
             'mapper'   => MediaMapper::class,
             'table'    => 'marketing_promotion_media',
             'external' => 'marketing_promotion_media_dst',

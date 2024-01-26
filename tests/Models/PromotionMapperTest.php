@@ -45,10 +45,10 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $money = new FloatInt();
         $money->setString('1.23');
 
-        $promotion->budgetCosts      = $money;
-        $promotion->budgetEarnings   = $money;
-        $promotion->actualCosts      = $money;
-        $promotion->actualEarnings   = $money;
+        $promotion->budgetCosts    = $money;
+        $promotion->budgetEarnings = $money;
+        $promotion->actualCosts    = $money;
+        $promotion->actualEarnings = $money;
 
         $task        = new Task();
         $task->title = 'EventTask 1';
@@ -58,8 +58,8 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $task2->title = 'EventTask 2';
         $task2->setCreatedBy(new NullAccount(1));
 
-        $promotion->addTask($task);
-        $promotion->addTask($task2);
+        $promotion->tasks[] = $task;
+        $promotion->tasks[] = $task2;
 
         $promotion->progress = 11;
         $promotion->setProgressType(ProgressType::TASKS);
@@ -68,10 +68,10 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         $media->createdBy   = new NullAccount(1);
         $media->description = 'desc';
         $media->setPath('some/path');
-        $media->size      = 11;
-        $media->extension = 'png';
-        $media->name      = 'Event Media';
-        $promotion->addMedia($media);
+        $media->size        = 11;
+        $media->extension   = 'png';
+        $media->name        = 'Event Media';
+        $promotion->files[] = $media;
 
         $id = PromotionMapper::create()->execute($promotion);
         self::assertGreaterThan(0, $promotion->id);
@@ -79,12 +79,11 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
 
         $promotionR = PromotionMapper::get()
             ->with('tasks')
-            ->with('media')
+            ->with('files')
             ->where('id', $promotion->id)->execute();
 
         self::assertEquals($promotion->name, $promotionR->name);
         self::assertEquals($promotion->description, $promotionR->description);
-        self::assertEquals($promotion->countTasks(), $promotionR->countTasks());
         self::assertEquals($promotion->start->format('Y-m-d'), $promotionR->start->format('Y-m-d'));
         self::assertEquals($promotion->end->format('Y-m-d'), $promotionR->end->format('Y-m-d'));
         self::assertEquals($promotion->budgetCosts->getAmount(), $promotionR->budgetCosts->getAmount());
@@ -94,8 +93,8 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($promotion->progress, $promotionR->progress);
         self::assertEquals($promotion->getProgressType(), $promotionR->getProgressType());
 
-        $expected = $promotion->getMedia();
-        $actual   = $promotionR->getMedia();
+        $expected = $promotion->files;
+        $actual   = $promotionR->files;
 
         self::assertEquals(\end($expected)->name, \end($actual)->name);
     }
