@@ -150,7 +150,7 @@ final class BackendController extends Controller
     public function viewMarketingPromotionCreate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/Marketing/Theme/Backend/promotion-create');
+        $view->setTemplate('/Modules/Marketing/Theme/Backend/promotion-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1001902001, $request, $response);
 
         return $view;
@@ -192,7 +192,7 @@ final class BackendController extends Controller
     public function viewMarketingEventCreate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/Marketing/Theme/Backend/event-create');
+        $view->setTemplate('/Modules/Marketing/Theme/Backend/event-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1001903001, $request, $response);
 
         return $view;

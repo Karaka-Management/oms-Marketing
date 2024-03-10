@@ -12,42 +12,75 @@
  */
 declare(strict_types=1);
 
-$promotion = $this->data['promotion'];
+use Modules\Marketing\Models\NullPromotion;
+
+$promotion = $this->data['promotion'] ?? new NullPromotion();
 
 echo $this->data['nav']->render(); ?>
 
 <div class="row">
     <div class="col-xs-12 col-md-6">
-        <section class="box wf-100">
-            <header><h1><?= $this->printHtml($promotion->getName()); ?></h1></header>
-            <div class="inner">
-                <form id="fProject" method="POST" action="<?= \phpOMS\Uri\UriFactory::build('{/api}marketing/promotion?{?}&csrf={$CSRF}'); ?>">
-                    <table class="layout wf-100">
-                        <tbody>
-                        <tr><td colspan="2"><label for="iName"><?= $this->getHtml('Name'); ?></label>
-                        <tr><td colspan="2"><input type="text" id="iName" name="name" placeholder="Name" value="<?= $this->printHtml($promotion->getName()); ?>" required>
-                        <tr><td><label for="iStart"><?= $this->getHtml('Start'); ?></label>
-                            <td><label for="iEnd"><?= $this->getHtml('End'); ?></label>
-                        <tr><td><input type="datetime-local" id="iStart" name="start" value="<?= $this->printHtml($promotion->getStart()->format('Y-m-d\TH:i:s')); ?>">
-                            <td><input type="datetime-local" id="iEnd" name="end" value="<?= $this->printHtml($promotion->getEnd()->format('Y-m-d\TH:i:s')); ?>">
-                        <tr><td colspan="2"><label for="iDescription"><?= $this->getHtml('Description'); ?></label>
-                        <tr><td colspan="2"><textarea id="iDescription" name="desc"><?= $this->printHtml($promotion->description); ?></textarea>
-                        <tr><td><label for="iBudget"><?= $this->getHtml('Budget'); ?></label><td><label for="iActual"><?= $this->getHtml('Actual'); ?></label>
-                        <tr><td><input type="text" id="iBudget" name="budget" placeholder=""><td><input type="text" id="iActual" name="actual">
-                        <tr><td colspan="2"><input type="submit" value="<?= $this->getHtml('Save', '0', '0'); ?>" name="save-promotion">
-                    </table>
-                </form>
+        <section class="portlet">
+            <form action="<?= \phpOMS\Uri\UriFactory::build('{/api}marketing/promotion'); ?>" method="post">
+            <div class="portlet-head"><?= $this->getHtml('Promotion'); ?></div>
+            <div class="portlet-body">
+                <div class="form-group">
+                    <label for="iType"><?= $this->getHtml('Type'); ?></label>
+                    <select id="iType" name="type"></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="iTitle"><?= $this->getHtml('Title'); ?></label>
+                    <input id="iTitle" type="text" name="title">
+                </div>
+
+                <div class="form-group">
+                    <label for="iDescription"><?= $this->getHtml('Description'); ?></label>
+                    <textarea id="iDescription" name="description"></textarea>
+                </div>
+
+                <div class="line-flex">
+                    <div>
+                        <div class="form-group">
+                            <label for="iStart"><?= $this->getHtml('Start'); ?></label>
+                            <input id="iSTart" type="datetime-local">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <label for="iEnd"><?= $this->getHtml('End'); ?></label>
+                            <input id="iEnd" type="datetime-local">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="iBudget"><?= $this->getHtml('Budget'); ?></label>
+                    <input type="text" id="iBudget" name="budget" placeholder="">
+                </div>
             </div>
+            <div class="portlet-foot">
+                <?php if ($promotion->id === 0) : ?>
+                    <input id="iCreateSubmit" type="Submit" value="<?= $this->getHtml('Create', '0', '0'); ?>">
+                <?php else : ?>
+                    <input id="iSaveSubmit" type="Submit" value="<?= $this->getHtml('Save', '0', '0'); ?>">
+                <?php endif; ?>
+            </div>
+            </form>
         </section>
     </div>
 
+    <?php if ($promotion->id !== 0) : ?>
     <div class="col-xs-12 col-md-6">
         <div class="box wf-100">
             <?= $this->getData('tasklist')->render($promotion->tasks); ?>
         </div>
     </div>
+    <?php endif; ?>
 </div>
 
+<?php if ($promotion->id !== 0) : ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <?= $this->getData('calendar')->render($promotion->getCalendar()); ?>
@@ -65,3 +98,4 @@ echo $this->data['nav']->render(); ?>
         </section>
     </div>
 </div>
+<?php endif; ?>
