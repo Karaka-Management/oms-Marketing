@@ -29,7 +29,7 @@ use phpOMS\Stdlib\Base\FloatInt;
 final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\Marketing\Models\PromotionMapper
+     * @covers \Modules\Marketing\Models\PromotionMapper
      * @group module
      */
     public function testCRUD() : void
@@ -100,7 +100,7 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Marketing\Models\PromotionMapper
+     * @covers \Modules\Marketing\Models\PromotionMapper
      * @group module
      */
     public function testNewest() : void

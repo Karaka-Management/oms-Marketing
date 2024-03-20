@@ -34,7 +34,7 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Marketing\Models\Promotion
+     * @covers \Modules\Marketing\Models\Promotion
      * @group module
      */
     public function testDefault() : void
@@ -54,7 +54,7 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Marketing\Models\Promotion
+     * @covers \Modules\Marketing\Models\Promotion
      * @group module
      */
     public function testProgressInputOutput() : void
@@ -64,7 +64,7 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Marketing\Models\Promotion
+     * @covers \Modules\Marketing\Models\Promotion
      * @group module
      */
     public function testProgressTypeInputOutput() : void
@@ -74,7 +74,7 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Marketing\Models\Promotion
+     * @covers \Modules\Marketing\Models\Promotion
      * @group module
      */
     public function testSerialize() : void

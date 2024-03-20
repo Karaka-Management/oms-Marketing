@@ -22,7 +22,7 @@ use Modules\Marketing\Models\NullPromotionAttributeType;
 final class NullPromotionAttributeTypeTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\Marketing\Models\NullPromotionAttributeType
+     * @covers \Modules\Marketing\Models\NullPromotionAttributeType
      * @group module
      */
     public function testNull() : void
@@ -31,7 +31,7 @@ final class NullPromotionAttributeTypeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Marketing\Models\NullPromotionAttributeType
+     * @covers \Modules\Marketing\Models\NullPromotionAttributeType
      * @group module
      */
     public function testId() : void
@@ -41,7 +41,7 @@ final class NullPromotionAttributeTypeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Marketing\Models\NullPromotionAttributeType
+     * @covers \Modules\Marketing\Models\NullPromotionAttributeType
      * @group module
      */
     public function testJsonSerialize() : void
