@@ -21,6 +21,7 @@ use phpOMS\Stdlib\Base\FloatInt;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Marketing\Models\Promotion::class)]
 final class PromotionTest extends \PHPUnit\Framework\TestCase
 {
     private Promotion $promotion;
@@ -33,10 +34,7 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
         $this->promotion = new Promotion();
     }
 
-    /**
-     * @covers \Modules\Marketing\Models\Promotion
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testDefault() : void
     {
         self::assertEquals(0, $this->promotion->id);
@@ -53,30 +51,21 @@ final class PromotionTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(ProgressType::MANUAL, $this->promotion->getProgressType());
     }
 
-    /**
-     * @covers \Modules\Marketing\Models\Promotion
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testProgressInputOutput() : void
     {
         $this->promotion->progress = 10;
         self::assertEquals(10, $this->promotion->progress);
     }
 
-    /**
-     * @covers \Modules\Marketing\Models\Promotion
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testProgressTypeInputOutput() : void
     {
         $this->promotion->setProgressType(ProgressType::TASKS);
         self::assertEquals(ProgressType::TASKS, $this->promotion->getProgressType());
     }
 
-    /**
-     * @covers \Modules\Marketing\Models\Promotion
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testSerialize() : void
     {
         $this->promotion->name        = 'Name';

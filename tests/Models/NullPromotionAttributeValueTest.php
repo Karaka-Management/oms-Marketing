@@ -19,31 +19,23 @@ use Modules\Marketing\Models\NullPromotionAttributeValue;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Marketing\Models\NullPromotionAttributeValue::class)]
 final class NullPromotionAttributeValueTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers \Modules\Marketing\Models\NullPromotionAttributeValue
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNull() : void
     {
         self::assertInstanceOf('\Modules\Marketing\Models\PromotionAttributeValue', new NullPromotionAttributeValue());
     }
 
-    /**
-     * @covers \Modules\Marketing\Models\NullPromotionAttributeValue
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testId() : void
     {
         $null = new NullPromotionAttributeValue(2);
         self::assertEquals(2, $null->id);
     }
 
-    /**
-     * @covers \Modules\Marketing\Models\NullPromotionAttributeValue
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testJsonSerialize() : void
     {
         $null = new NullPromotionAttributeValue(2);
