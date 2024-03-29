@@ -21,7 +21,7 @@ echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <section class="portlet">
-            <form action="<?= \phpOMS\Uri\UriFactory::build('{/api}marketing/promotion'); ?>" method="post">
+            <form action="<?= \phpOMS\Uri\UriFactory::build('{/api}marketing/promotion?csrf={$CSRF}'); ?>" method="post">
             <div class="portlet-head"><?= $this->getHtml('Promotion'); ?></div>
             <div class="portlet-body">
                 <div class="form-group">
@@ -39,11 +39,11 @@ echo $this->data['nav']->render(); ?>
                     <textarea id="iDescription" name="description"></textarea>
                 </div>
 
-                <div class="line-flex">
+                <div class="flex-line">
                     <div>
                         <div class="form-group">
                             <label for="iStart"><?= $this->getHtml('Start'); ?></label>
-                            <input id="iSTart" type="datetime-local">
+                            <input id="iStart" type="datetime-local">
                         </div>
                     </div>
 
@@ -57,7 +57,7 @@ echo $this->data['nav']->render(); ?>
 
                 <div class="form-group">
                     <label for="iBudget"><?= $this->getHtml('Budget'); ?></label>
-                    <input type="text" id="iBudget" name="budget" placeholder="">
+                    <input type="text" id="iBudget" name="budget">
                 </div>
             </div>
             <div class="portlet-foot">
