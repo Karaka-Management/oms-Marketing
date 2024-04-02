@@ -100,7 +100,7 @@ final class PromotionMapperTest extends \PHPUnit\Framework\TestCase
     #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNewest() : void
     {
-        $newest = PromotionMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->execute();
+        $newest = PromotionMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->executeGetArray();
 
         self::assertCount(1, $newest);
     }
