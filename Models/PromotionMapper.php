@@ -21,7 +21,7 @@ use Modules\Tasks\Models\TaskMapper;
 use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
- * Mapper class.
+ * Promotion mapper class.
  *
  * @package Modules\Marketing\Models
  * @license OMS License 2.0
