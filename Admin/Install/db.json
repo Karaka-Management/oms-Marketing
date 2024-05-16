@@ -200,13 +200,13 @@
                 "null": false
             },
             "marketing_promotion_attr_type_required": {
-                "description": "Every promotion must have this attribute type if set to true.",
+                "comment": "Every promotion must have this attribute type if set to true.",
                 "name": "marketing_promotion_attr_type_required",
                 "type": "TINYINT(1)",
                 "null": false
             },
             "marketing_promotion_attr_type_pattern": {
-                "description": "This is a regex validation pattern.",
+                "comment": "This is a regex validation pattern.",
                 "name": "marketing_promotion_attr_type_pattern",
                 "type": "VARCHAR(255)",
                 "null": false
