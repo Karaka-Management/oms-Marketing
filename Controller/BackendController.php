@@ -89,7 +89,7 @@ final class BackendController extends Controller
         $mediaListView->setTemplate('/Modules/Media/Theme/Backend/Components/Media/list');
         $view->data['medialist'] = $mediaListView;
 
-        $promotion               = PromotionMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $promotion               = PromotionMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $view->data['promotion'] = $promotion;
 
         return $view;
@@ -129,7 +129,7 @@ final class BackendController extends Controller
         $mediaListView->setTemplate('/Modules/Media/Theme/Backend/Components/Media/list');
         $view->data['medialist'] = $mediaListView;
 
-        $promotion               = PromotionMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $promotion               = PromotionMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $view->data['promotion'] = $promotion;
 
         return $view;

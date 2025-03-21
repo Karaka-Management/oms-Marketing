@@ -74,7 +74,7 @@ echo $this->data['nav']->render(); ?>
     <?php if ($promotion->id !== 0) : ?>
     <div class="col-xs-12 col-md-6">
         <div class="box wf-100">
-            <?= $this->getData('tasklist')->render($promotion->tasks); ?>
+            <?= $this->data['tasklist']->render($promotion->tasks); ?>
         </div>
     </div>
     <?php endif; ?>
@@ -83,11 +83,11 @@ echo $this->data['nav']->render(); ?>
 <?php if ($promotion->id !== 0) : ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
-        <?= $this->getData('calendar')->render($promotion->getCalendar()); ?>
+        <?= $this->data['calendar']->render($promotion->getCalendar()); ?>
     </div>
 
     <div class="col-xs-12 col-md-6">
-        <?= $this->getData('medialist')->render($promotion->files); ?>
+        <?= $this->data['medialist']->render($promotion->files); ?>
     </div>
 </div>
 
